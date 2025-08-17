@@ -1,0 +1,108 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    padding: 10px 10px;
+    border-bottom: 1px solid #eee;
+}
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.mainNav {
+    background-color: #2c3e50;   /* màu nền */
+    padding: 10px 0;
+}
+
+.mainNav ul {
+    list-style: none;            /* bỏ dấu chấm */
+    margin: 0;
+    padding: 0;
+    display: flex;               /* xếp ngang */
+    justify-content: center;     /* căn giữa */
+    gap: 30px;                    /* khoảng cách giữa các mục */
+}
+
+.mainNav li {
+    position: relative;          /* để làm hiệu ứng gạch dưới */
+}
+
+.mainNav a {
+    text-decoration: none;       /* bỏ gạch chân */
+    color: white;                /* màu chữ */
+    font-size: 16px;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: color 0.3s ease; /* hiệu ứng màu chữ */
+}
+
+/* Hiệu ứng gạch dưới khi hover */
+.mainNav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #f39c12;
+    left: 0;
+    bottom: -4px;
+    transition: width 0.3s ease;
+}
+
+.mainNav a:hover {
+    color: #f39c12;               /* đổi màu chữ */
+}
+
+.mainNav a:hover::after {
+    width: 100%;
+}
+
+#roomList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.room-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.room-card h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.room-card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.btn-view {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn-view:hover {
+    background-color: #0056b3;
+}

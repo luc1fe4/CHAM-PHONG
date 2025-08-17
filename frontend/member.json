@@ -1,0 +1,40 @@
+[
+    {
+        "room": "015",
+        "members": [
+            "Phan Lê Nhật Anh",
+            "Bùi Phương Anh",
+            "Nguyễn Thanh Sang",
+            "Lê Minh Quyết",
+            "Trần Quốc Tuấn",
+            "Lê Văn Châu",
+            "Nguyễn Quốc Anh",
+            "Nguyễn Quốc Kiệt"
+        ]
+    },
+    {
+        "room": "016",
+        "members": [
+            "Bùi Trần Nhựt Tiến",
+            "Lý Tuấn Vĩ",
+            "Nguyễn Tấn Tiến",
+            "Nguyễn Bảo Trọng",
+            "Phạm Vinh Quang",
+            "Nguyễn Ngô Đức Toàn",
+            "Nguyễn Văn Thanh",
+            "Trần Thành Danh"
+        ]
+    },
+    {
+        "room": "314",
+        "members": [
+            "Lê Công Phúc",
+            "Quách Hải Thọ",
+            "Trương Văn Phước",
+            "Trần Trung Toàn",
+            "Liêu Vĩnh Hưng",
+            "Đinh Bình An",
+            "Phan Hữu Nhân"
+        ]
+    }
+]

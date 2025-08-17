@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chấm phòng</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div>
+            <img src="images/ktxCM.png" alt="ktx Cỏ May" style="width: 70px; height: 70px;">
+            <img src="images/NongLam.png" alt="Đại học Nông Lâm" style="width: 70px; height: 70px; margin-left: 10px;">
+        </div>
+        <div>
+            <h1 id="pageHeading">CHẤM PHÒNG</h1>
+        </div>
+        <div class="inputContainer" style="max-width: 500px;">
+          <input
+            type="text"
+            class="form-control"
+            id="searchInput"
+            placeholder="Nhập nội dung tìm kiếm…"
+          />
+          </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <form id="roomForm">
+            <!-- Họ và tên người trực -->
+            <fieldset>
+                <legend>Họ và tên người trực <span style="color:red">*</span></legend>
+                <div class="member-list" data-section="nguoiTruc"></div>
+            </fieldset>
+
+            <br>
+
+            <!-- Khu vực hành lang -->
+            <fieldset>
+                <legend>Khu vực hành lang <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Giày dép sạch sẽ</td>
+                        <td>
+                            - Giày dép sạch sẽ<br>
+                            - Không có tất (vớ) trong giày
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Giày dép xếp đúng</td>
+                        <td>
+                            - Không để trong hộp, bọc<br>
+                            - Không chồng lên nhau<br>
+                            - Không để dưới sàn<br>
+                            - Xếp theo đôi
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Kệ dép cách tường 1 khoảng</td>
+                        <td>- Kệ dép cách tường<br>
+                            - Dép không chạm tường
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sàn hành lang sạch sẽ</td>
+                        <td>- Không có đất, tóc<br>
+                            - Chú ý phần sàn dưới kệ dép
+                        </td>
+                    </tr>
+                </table>
+
+                <br>
+                <label>Giày dép sạch sẽ:</label>
+                <input type="radio" name="giayDepSachSe" value="Đạt"> Đạt
+                <input type="radio" name="giayDepSachSe" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Giày dép xếp đúng:</label>
+                <input type="radio" name="giayDepXepDung" value="Đạt"> Đạt
+                <input type="radio" name="giayDepXepDung" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Kệ dép cách tường 1 khoảng:</label>
+                <input type="radio" name="keDep" value="Đạt"> Đạt
+                <input type="radio" name="keDep" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Sàn hành lang sạch sẽ:</label>
+                <input type="radio" name="sanSach" value="Đạt"> Đạt
+                <input type="radio" name="sanSach" value="Không đạt"> Không đạt
+            </fieldset>
+            <br>
+
+            <!-- Khu vực phòng sinh hoạt -->
+            <fieldset>
+                <legend>Khu vực phòng sinh hoạt <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Sàn phòng sạch</td>
+                        <td>- Không có tóc<br>- Lưu ý phía chân tường, góc cửa</td>
+                    </tr>
+                    <tr>
+                        <td>Sàn gọn gàng</td>
+                        <td>- Không có ghế inox (nếu không dùng)<br>- Dưới sàn không có vật gì</td>
+                    </tr>
+                    <tr>
+                        <td>Giường/Tủ/Bàn/Ghế/Móc TRỐNG</td>
+                        <td>- Không có bất cứ vật gì<br>- Không được dán tên</td>
+                    </tr>
+                    <tr>
+                        <td>Cửa GỖ sạch sẽ</td>
+                        <td>- Lưu ý các ô phía trên của cửa</td>
+                    </tr>
+                    <tr>
+                        <td>Cửa KÍNH sạch sẽ</td>
+                        <td>- Quan sát 7 tấm kính<br>- Rèm không có trứng bọ xít</td>
+                    </tr>
+                    <tr>
+                        <td>Quạt đảo sạch sẽ</td>
+                        <td>- Kiểm tra vào chủ nhật (tuần thứ 2 và tuần thứ 4)</td>
+                    </tr>
+                    <tr>
+                        <td>Đầu tủ quần áo xếp đúng</td>
+                        <td>- Vali dựng đứng xếp từ cao đến thấp, từ trong ra ngoài cửa chính. Khoảng trống xếp gọn gàng (nếu có)</td>
+                    </tr>
+                </table>
+
+                <br>
+                <label>Sàn phòng sạch:</label>
+                <input type="radio" name="sanPhongSach" value="Đạt"> Đạt
+                <input type="radio" name="sanPhongSach" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Sàn gọn gàng:</label>
+                <input type="radio" name="sanGonGang" value="Đạt"> Đạt
+                <input type="radio" name="sanGonGang" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Giường/Tủ/Bàn/Ghế/Móc TRỐNG:</label>
+                <input type="radio" name="giuongTrong" value="Đạt"> Đạt
+                <input type="radio" name="giuongTrong" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Cửa Gỗ sạch:</label>
+                <input type="radio" name="cuaGo" value="Đạt"> Đạt
+                <input type="radio" name="cuaGo" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Cửa Kính sạch:</label>
+                <input type="radio" name="cuaKinh" value="Đạt"> Đạt
+                <input type="radio" name="cuaKinh" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Quạt đảo sạch:</label>
+                <input type="radio" name="quatDao" value="Đạt"> Đạt
+                <input type="radio" name="quatDao" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Đầu tủ quần áo xếp đúng:</label>
+                <input type="radio" name="dauTuQuanAo" value="Đạt"> Đạt
+                <input type="radio" name="dauTuQuanAo" value="Không đạt"> Không đạt
+            </fieldset>
+            <br>
+
+            <fieldset>
+                <legend>Giường (Nếu SV còn ngủ đánh Không đạt)<span style="color:red">*</span></legend>
+                <table border="1" cellpanding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Dán đúng tên</td>
+                        <td>
+                            -Giường sạch sẽ, không có keo đen và phía sau bảng tên
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Chỉ được đặt 1 mùng, 1 mền, 1 chiếu, 1 gối, sạc pin có cắm sạc</td>
+                        <td>
+                            - Yêu cầu SV ra khỏi giường để kiểm tra<br>
+                            - Đạt<br>
+                            + Mền xếp ngay ngắn vuông vức, không nhăn đặt chồng trên gối.<br>
+                            + Chiếu song song với thành giường.<br>
+                            + Chiếu ngắn hơn thì gấp lại (không để lòng thòng).<br>
+                            - Không đạt<br>
+                            + Có dây cắm sạc nhưng không sạc.<br>
+                            + Không để bất kỳ vật gì khác trên giường (chỉ trừ đồ dùng đang sạc).<br>
+                            + Không có tấm lót, gấu bông, nệm.<br>
+                            + Móc treo mùng <b>CHỈ</b> móc chìa khóa tủ<br>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="member-list" data-section="giuong"></div>
+            </fieldset>
+            <br>
+
+            <fieldset>
+                <legend>Giường người trực<span style="color:red">*</span></legend>
+                <input type="radio" name="GiuongNguoiTruc" value="Đạt">Đạt<br>
+                <input type="radio" name="GiuongNguoiTruc" value="Không đạt"> Không đạt
+            </fieldset>
+            <br>
+            
+            <fieldset>
+                <legend>Tủ<span style="color:red">*</span></legend>
+                <table border="1" cellpanding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Dán đúng tên</td>
+                        <td>
+                            - Tủ sạch sẽ, không có keo đen và phía sau bảng tên
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Quần áo gọn gàng</td>
+                        <td>
+                            - Khu vực treo đồ, yêu cầu treo từ mép cánh cửa vào giữa, quần áo
+                            từ dài đến ngắn, treo bề mặt áo (áo có cổ phải gấp cổ áo ra ngoài).<br>
+                            - Được treo áo sơ mi, quần tây (gấp lại cho bằng áo sơ mi). Được để 
+                            đồ tại khu treo nhưng phải thấp hơn phần dưới cùng của áo sơ mi.<br>
+                            - Đồ mặc ở nhà, áo quần jean yêu cầu gấp (không treo).<br>
+                            - Không <b>NHÌN THẤY</b> thức ăn, thực phẩm, đồ uống, 3 học tủ phải
+                            được xếp gọn.<br>
+                            - Không có bụi, không có kiến, không có mùi hôi.<br>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="member-list" data-section="tu"></div>
+            </fieldset>
+            <br>
+
+            <fieldset>
+                <legend>Tủ người trực<span style="color:red">*</span></legend>
+                <input type="radio" name="TuNguoiTruc" value="Đạt">Đạt<br>
+                <input type="radio" name="TuNguoiTruc" value="Không đạt"> Không đạt
+            </fieldset>
+            <br>
+             <!-- 4. Kệ sách / Bàn học -->
+            <fieldset id="keSachFieldset">
+                <legend>Kệ sách / Bàn học <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Dán đúng tên</td>
+                        <td>
+                            - Kệ sạch sẽ, không có keo, sơn và phần phía sau bảng tên.<br>
+                            - Không treo hoặc dán bất kỳ vật gì khác bảng tên lên tường, bàn học,
+                            kệ sách.<br>
+                            - Kệ trên cùng được đặt tối đa 1 nón bảo hiểm.<br>
+                            - Sắp xếp đồ dùng trên kệ không vượt quá gấp đôi thành kệ.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bố trí gọn gàng, ngăn nắp</td>
+                        <td>
+                            - Sách phải để trên kệ<br>
+                            - Bàn học (tính theo chiều rộng - tổng chiều rộng khoảng 60cm).<br>
+                            + 40cm từ ngoài vào yêu cầu chỉ được để laptop, máy tính khi không sử dụng.<br>
+                            + Dụng cụ học tập để trên kệ sách. Nếu kệ sách đầy thì dụng cụ học tập mới
+                             được đề tại 20cm trong cùng (phía dưới kệ sách). 20cm trong cùng để đồ dùng
+                             dễ vỡ, nước uống.<br>
+                            - Học bàn có sắp xếp. Không có rác, bụi.<br>
+                            - Thùng dưới chân bàn đậy kín, không vượt quá chiều dài và chiều rộng bản cá
+                             nhân (Mỗi SV chỉ được 1 thùng).<br>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="member-list" data-section="keSach"></div>
+            </fieldset>
+
+            <br>
+            <fieldset>
+                <legend>Kệ sách người trực<span style="color:red">*</span></legend>
+                <input type="radio" name="KeSachNguoiTruc" value="Đạt">Đạt<br>
+                <input type="radio" name="KeSachNguoiTruc" value="Không đạt"> Không đạt
+            </fieldset>
+            <!-- 5. Ghế xanh -->
+            <fieldset id="gheXanhFieldset">
+                <legend>Ghế xanh <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr><th>Nội dung chấm điểm</th><th>Mô tả</th></tr>
+                    <tr>
+                        <td>Dán đúng tên</td>
+                        <td>
+                            - Ghế sạch sẽ, không có keo đen và phía sau bảng tên.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cặp để trên ghế</td>
+                        <td>
+                            - Ghế không dùng phải đẩy sát vào bàn hoặc chạm vào thùng đựng sách.<br>
+                            - Chỉ để 1 cái cặp trên ghế, cặp không để dưới sàn.<br>
+                            - Không đẻ đệm ngồi vào giờ chấm phòng/Không sử dụng ghế khác ghế KTX cấp.<br>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="member-list" data-section="ghe"></div>
+            </fieldset>
+
+            <br>
+            <fieldset>
+                <legend>Ghế người trực<span style="color:red">*</span></legend>
+                <input type="radio" name="GheNguoiTruc" value="Đạt">Đạt<br>
+                <input type="radio" name="GheNguoiTruc" value="Không đạt"> Không đạt
+            </fieldset>
+
+            <!-- 6. Khu vực ban công -->
+            <fieldset>
+                <legend>Khu vực ban công <span style="color:red">*</span></legend>
+            <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+            <tr>
+                <th>Nội dung chấm điểm</th>
+                <th>Mô tả</th>
+            </tr>
+            <tr>
+                <td>Chén đũa sạch sẽ</td>
+                <td>- Chén đũa không bám bụi.<br>- Không có đũa mốc, dao, muỗng rỉ sét.</td>
+            </tr>
+            <tr>
+                <td>Chén đũa gọn gàng</td>
+                <td>- Chén đũa có sắp xếp.<br>- Không để chén đũa dưới sàn.</td>
+            </tr>
+            <tr>
+                <td>Sàn sạch sẽ</td>
+                <td>- Sàn không có tóc, đất, lá khô.<br>- Lưu ý sàn chỗ chậu cây.<br>- Thành tường không có tóc, đất.</td>
+            </tr>
+            <tr>
+                <td>Sàn gọn gàng</td>
+                <td>- Các chậu cây được sắp xếp hợp lý.<br>- Không treo hay để chậu cây trên thành tường, lan can.</td>
+            </tr>
+            <tr>
+                <td>Lỗ thoát nước sạch</td>
+                <td>- Không có tóc, đất, đá, sơn, lá khô.<br>- Nắp được mở ra khi chấm phòng.</td>
+            </tr>
+            </table>
+
+                <br>
+                <label>Chén đũa sạch sẽ:</label>
+                <input type="radio" name="cheDuaSachSe" value="Đạt"> Đạt
+                <input type="radio" name="cheDuaSachSe" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Chén đũa gọn gàng:</label>
+                <input type="radio" name="chenDuaGonGang" value="Đạt"> Đạt
+                <input type="radio" name="chenDuaGonGang" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Sàn sạch sẽ:</label>
+                <input type="radio" name="sanSachSe" value="Đạt"> Đạt
+                <input type="radio" name="sanSachSe" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Sàn gọn gàng:</label>
+                <input type="radio" name="sanGonGang" value="Đạt"> Đạt
+                <input type="radio" name="sanGonGang" value="Không đạt"> Không đạt
+                <br><br>
+
+                <label>Lỗ thoát nước sạch</label>
+                <input type="radio" name="loThoatNuocSach" value="Đạt"> Đạt
+                <input type="radio" name="loThoatNuocSach" value="Không đạt"> Không đạt
+            </fieldset>
+
+            <br>
+
+            <!-- 7. Khu vực bồn rửa tay -->
+            <fieldset>
+                <legend>Khu vực bồn rửa tay <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Gương và vòi nước sạch sẽ</td>
+                        <td>
+                            - Gương sạch sẽ<br>
+                            - Vòi nước không có rêu xanh, mốc
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Bồn rửa tay sạch sẽ</td>
+                        <td>
+                            - Không có tóc, đồ ăn thừa<br>
+                            - Mặt bàn tại bồn rửa tay không đặt bất kỳ vật dụng gì
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sàn sạch sẽ</td>
+                        <td>
+                            - Dưới sàn để ky & sọt rác, ghế inox, Thùng có nắp<br>
+                            - Thùng rác không quá 50%<br>
+                            - Kỹ hốt rác sạch sẽ<br>
+                            - Lưu ý phần sàn góc cửa
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thùng rác và thùng chung</td>
+                        <td>
+                            - Thùng rác sạch sẽ, có bọc túi rác bên trong, lượng rác không đầy quá nửa thùng<br>
+                            - Đồ vật bên trong thùng đựng đồ chung được sắp xếp, sạch sẽ, đậy kín
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tường lavabo</td>
+                        <td>
+                            - Tường cạnh lavabo vệ sinh trống, sạch sẽ<br>
+                            - Tường lát gạch men sạch sẽ<br>
+                            - Lưu ý phần nối giữa tường lát gạch men và tường sơn<br>
+                            - Tường không có mạng nhện
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Móc treo chổi</td>
+                        <td>
+                            - Chỉ treo chổi và không để gì khác
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <label>Gương và vòi nước sạch sẽ:</label>
+                <input type="radio" name="guongVoiNuoc" value="Đạt"> Đạt
+                <input type="radio" name="guongVoiNuoc" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Bồn rửa tay sạch sẽ:</label>
+                <input type="radio" name="bonRuaTay" value="Đạt"> Đạt
+                <input type="radio" name="bonRuaTay" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Sàn sạch sẽ:</label>
+                <input type="radio" name="sanBonRuaTay" value="Đạt"> Đạt
+                <input type="radio" name="sanBonRuaTay" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Thùng rác và thùng chung:</label>
+                <input type="radio" name="thungRacChung" value="Đạt"> Đạt
+                <input type="radio" name="thungRacChung" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Tường lavabo:</label>
+                <input type="radio" name="tuongLavabo" value="Đạt"> Đạt
+                <input type="radio" name="tuongLavabo" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Móc treo chổi:</label>
+                <input type="radio" name="mocTreoChoi" value="Đạt"> Đạt
+                <input type="radio" name="mocTreoChoi" value="Không đạt"> Không đạt
+            </fieldset>
+            <br>
+
+            <!-- 5. Khu vực giặt đồ -->
+            <fieldset>
+                <legend>Khu vực giặt đồ <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Sàn, tường, khe gạch sạch sẽ</td>
+                        <td>- Không có rong rêu xanh, mạng nhện<br>- Khe gạch sạch sẽ</td>
+                    </tr>
+                    <tr>
+                        <td>Thau, cây lau nhà gọn gàng</td>
+                        <td>- Thau xếp thành 1 chồng để góc trái<br>- Đồ đợ được gom lại thau trên cùng</td>
+                    </tr>
+                    <tr>
+                        <td>Lỗ thoát nước sạch</td>
+                        <td>- Không có tóc, đất, đá, sơn, lá khô<br>- Nắp được mở ra khi chấm phòng</td>
+                    </tr>
+                    <tr>
+                        <td>Vòi nước sạch</td>
+                        <td>- Vòi nước sạch sẽ, không có rêu xanh</td>
+                    </tr>
+                    <tr>
+                        <td>Sào đồ xếp đúng</td>
+                        <td>
+                            * Theo hướng nhìn từ lavabo ra cửa sổ<br>
+                            - Sào dọc bên Trái treo quần, bên Phải treo áo, khăn ướt (tối đa 2/3 mỗi sào)<br>
+                            - Sào ngang xa cửa gỗ treo khăn tỉa dài đen ngắn bên phải (tối đa 1/3)<br>
+                            - Sào ngang gần cửa sổ yêu cầu trống<br>
+                            - Thảm lau chân, lau nhà, mùng, mền, chiếu không được treo trên sào và cửa sổ
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Cửa sổ gọn gàng</td>
+                        <td>- Thanh sắt phải trống<br>- Chỉ được phủ giày trên thành tường cửa sổ, không để vật dụng khác<br>- Phần thành tường sạch sẽ</td>
+                    </tr>
+                    <tr>
+                        <td>2 Giá treo</td>
+                        <td>- Được treo thảm lau chân, lau nhà, khăn</td>
+                    </tr>
+                </table>
+                <br>
+                <label>Sàn, tường, khe gạch sạch sẽ:</label>
+                <input type="radio" name="sanTuongGiatDo" value="Đạt"> Đạt
+                <input type="radio" name="sanTuongGiatDo" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Thau, cây lau nhà gọn gàng:</label>
+                <input type="radio" name="thauCayGiatDo" value="Đạt"> Đạt
+                <input type="radio" name="thauCayGiatDo" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Lỗ thoát nước sạch:</label>
+                <input type="radio" name="loThoatNuocGiatDo" value="Đạt"> Đạt
+                <input type="radio" name="loThoatNuocGiatDo" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Vòi nước sạch:</label>
+                <input type="radio" name="voiNuocGiatDo" value="Đạt"> Đạt
+                <input type="radio" name="voiNuocGiatDo" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Sào đồ xếp đúng:</label>
+                <input type="radio" name="saoDoGiatDo" value="Đạt"> Đạt
+                <input type="radio" name="saoDoGiatDo" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Cửa sổ gọn gàng:</label>
+                <input type="radio" name="cuaSoGiatDo" value="Đạt"> Đạt
+                <input type="radio" name="cuaSoGiatDo" value="Không đạt"> Không đạt
+                <br><br>
+                <label>2 Giá treo:</label>
+                <input type="radio" name="giaTreoGiatDo" value="Đạt"> Đạt
+                <input type="radio" name="giaTreoGiatDo" value="Không đạt"> Không đạt
+            </fieldset>
+            <br>
+
+            <!-- Móc treo đồ -->
+            <fieldset>
+                <legend>Móc treo đồ <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Móc treo đồ</td>
+                        <td>
+                            - Dán đúng tên<br>
+                            - Sạch sẽ, không có keo đen, phía sau bảng tên<br>
+                            - Nơi treo áo khoác, quần áo đã sử dụng nhưng vẫn còn sạch và nón vải<br>
+                            - Số lượng tối đa không quá 4 vật dụng, không treo đồ lót, đồ treo ở đây phải treo bề mặt
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <div class="member-list" data-section="mocTreoDo"></div>
+
+            </fieldset>
+            <br>
+            <fieldset>
+                <label>Móc treo quần áo người trực:</label>
+                <input type="radio" name="mocNguoiTruc" value="Đạt"> Đạt
+                <input type="radio" name="mocNguoiTruc" value="Không đạt"> Không đạt
+            </fieldset>
+
+            <!-- 6. Khu vực nhà tắm nhỏ -->
+            <fieldset>
+                <legend>Khu vực nhà tắm nhỏ <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Sàn, tường, khe gạch sạch sẽ</td>
+                        <td>- Không có rong rêu, mạng nhện, tường không ố vàng<br>- Khe gạch sạch sẽ, lưu ý phần tường góc cửa và phần nối giữa tấm gạch men và tường sơn</td>
+                    </tr>
+                    <tr>
+                        <td>Cửa sạch sẽ</td>
+                        <td>- Bên trong và bên ngoài không bị rêu, ố, mốc</td>
+                    </tr>
+                    <tr>
+                        <td>Giá trống</td>
+                        <td>- Giá móc đồ trống<br>- Kệ để sữa tắm trống</td>
+                    </tr>
+                    <tr>
+                        <td>Vòi sen sạch sẽ</td>
+                        <td>- Dây vòi sen, vòi sen, giá đỡ sạch<br>- Vòi nước không có rêu, ố</td>
+                    </tr>
+                    <tr>
+                        <td>Lỗ thoát nước sạch</td>
+                        <td>- Không có tóc, đất, đá, sơn<br>- Nắp được mở ra khi chấm phòng</td>
+                    </tr>
+                </table>
+                <br>
+                <label>Sàn, tường, khe gạch sạch sẽ:</label>
+                <input type="radio" name="sanTuongNhaTamNho" value="Đạt"> Đạt
+                <input type="radio" name="sanTuongNhaTamNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Cửa sạch sẽ:</label>
+                <input type="radio" name="cuaNhaTamNho" value="Đạt"> Đạt
+                <input type="radio" name="cuaNhaTamNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Giá trống:</label>
+                <input type="radio" name="giaTrongNhaTamNho" value="Đạt"> Đạt
+                <input type="radio" name="giaTrongNhaTamNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Vòi sen sạch sẽ:</label>
+                <input type="radio" name="voiSenNhaTamNho" value="Đạt"> Đạt
+                <input type="radio" name="voiSenNhaTamNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Lỗ thoát nước sạch:</label>
+                <input type="radio" name="loThoatNuocNhaTamNho" value="Đạt"> Đạt
+                <input type="radio" name="loThoatNuocNhaTamNho" value="Không đạt"> Không đạt
+            </fieldset>
+            <br>
+
+
+            <!-- 7. Khu vực nhà tắm lớn -->
+            <fieldset>
+                <legend>Khu vực nhà tắm lớn <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Sàn, tường, khe gạch sạch sẽ</td>
+                        <td>- Không có rong rêu, mạng nhện, tường không ố vàng<br>- Khe gạch sạch sẽ, lưu ý phần tường góc cửa và phần nối giữa tấm gạch men và tường sơn</td>
+                    </tr>
+                    <tr>
+                        <td>Cửa sạch sẽ</td>
+                        <td>- Bên trong và bên ngoài không bị rêu, ố, mốc</td>
+                    </tr>
+                    <tr>
+                        <td>Giá trống</td>
+                        <td>- Giá móc đồ trống<br>- Kệ để sữa tắm trống</td>
+                    </tr>
+                    <tr>
+                        <td>Giá treo cây chà bồn cầu</td>
+                        <td>- Sạch sẽ, không bị rỉ sét</td>
+                    </tr>
+                    <tr>
+                        <td>Vòi sen sạch sẽ</td>
+                        <td>- Dây vòi sen, vòi sen, giá đỡ sạch<br>- Vòi nước không có rêu, ố</td>
+                    </tr>
+                    <tr>
+                        <td>Vòi xịt sạch sẽ</td>
+                        <td>- Dây vòi xịt, vòi xịt, giá đỡ sạch</td>
+                    </tr>
+                    <tr>
+                        <td>Lỗ thoát nước sạch</td>
+                        <td>- Không có tóc, đất, đá, sơn<br>- Nắp được mở ra khi chấm phòng</td>
+                    </tr>
+                    <tr>
+                        <td>Bồn cầu sạch sẽ, không mùi</td>
+                        <td>- Sạch cả bên trong, phía sau, nắp, nút bấm, phía dưới</td>
+                    </tr>
+                    <tr>
+                        <td>Quạt hút</td>
+                        <td>- Kiểm tra vào chủ nhật (tuần thứ 2 và tuần thứ 4)</td>
+                    </tr>
+                </table>
+                <br>
+                <label>Sàn, tường, khe gạch sạch sẽ:</label>
+                <input type="radio" name="sanTuongTamLon" value="Đạt"> Đạt
+                <input type="radio" name="sanTuongTamLon" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Cửa sạch sẽ:</label>
+                <input type="radio" name="cuaTamLon" value="Đạt"> Đạt
+                <input type="radio" name="cuaTamLon" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Giá trống:</label>
+                <input type="radio" name="giaTrongTamLon" value="Đạt"> Đạt
+                <input type="radio" name="giaTrongTamLon" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Giá treo cây chà bồn cầu:</label>
+                <input type="radio" name="giaTreoChaTamLon" value="Đạt"> Đạt
+                <input type="radio" name="giaTreoChaTamLon" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Vòi sen sạch sẽ:</label>
+                <input type="radio" name="voiSenTamLon" value="Đạt"> Đạt
+                <input type="radio" name="voiSenTamLon" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Vòi xịt sạch sẽ:</label>
+                <input type="radio" name="voiXitTamLon" value="Đạt"> Đạt
+                <input type="radio" name="voiXitTamLon" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Lỗ thoát nước sạch:</label>
+                <input type="radio" name="loThoatNuocTamLon" value="Đạt"> Đạt
+                <input type="radio" name="loThoatNuocTamLon" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Bồn cầu sạch sẽ, không mùi:</label>
+                <input type="radio" name="bonCauTamLon" value="Đạt"> Đạt
+                <input type="radio" name="bonCauTamLon" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Quạt hút:</label>
+                <input type="radio" name="quatHutTamLon" value="Đạt"> Đạt
+                <input type="radio" name="quatHutTamLon" value="Không đạt"> Không đạt
+            </fieldset>
+            <br>
+
+            <!-- 8. Khu vực WC nhỏ -->
+            <fieldset>
+                <legend>Khu vực WC nhỏ <span style="color:red">*</span></legend>
+                <table border="1" cellpadding="6" style="border-collapse: collapse; width: 100%;">
+                    <tr>
+                        <th>Nội dung chấm điểm</th>
+                        <th>Mô tả</th>
+                    </tr>
+                    <tr>
+                        <td>Sàn, tường, khe gạch sạch sẽ</td>
+                        <td>- Không có rong rêu, mạng nhện, tường không ố vàng<br>- Khe gạch sạch sẽ, lưu ý phần tường góc cửa và phần nối giữa tấm gạch men và tường sơn</td>
+                    </tr>
+                    <tr>
+                        <td>Cửa sạch sẽ</td>
+                        <td>- Bên trong và bên ngoài không bị rêu, ố, mốc</td>
+                    </tr>
+                    <tr>
+                        <td>Giá treo cây chà bồn cầu</td>
+                        <td>- Sạch sẽ, không bị rỉ sét</td>
+                    </tr>
+                    <tr>
+                        <td>Vòi xịt sạch sẽ</td>
+                        <td>- Dây vòi xịt, vòi xịt, giá đỡ sạch</td>
+                    </tr>
+                    <tr>
+                        <td>Lỗ thoát nước sạch</td>
+                        <td>- Không có tóc, đất, đá, sơn<br>- Nắp được mở ra khi chấm phòng</td>
+                    </tr>
+                    <tr>
+                        <td>Bồn cầu sạch sẽ, không mùi</td>
+                        <td>- Sạch cả bên trong, phía sau, nắp, nút bấm, phía dưới</td>
+                    </tr>
+                    <tr>
+                        <td>Quạt hút</td>
+                        <td>- Kiểm tra vào chủ nhật (tuần thứ 2 và tuần thứ 4)</td>
+                    </tr>
+                </table>
+                <br>
+                <label>Sàn, tường, khe gạch sạch sẽ:</label>
+                <input type="radio" name="sanTuongWCNho" value="Đạt"> Đạt
+                <input type="radio" name="sanTuongWCNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Cửa sạch sẽ:</label>
+                <input type="radio" name="cuaWCNho" value="Đạt"> Đạt
+                <input type="radio" name="cuaWCNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Giá treo cây chà bồn cầu:</label>
+                <input type="radio" name="giaTreoChaWCNho" value="Đạt"> Đạt
+                <input type="radio" name="giaTreoChaWCNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Vòi xịt sạch sẽ:</label>
+                <input type="radio" name="voiXitWCNho" value="Đạt"> Đạt
+                <input type="radio" name="voiXitWCNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Lỗ thoát nước sạch:</label>
+                <input type="radio" name="loThoatNuocWCNho" value="Đạt"> Đạt
+                <input type="radio" name="loThoatNuocWCNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Bồn cầu sạch sẽ, không mùi:</label>
+                <input type="radio" name="bonCauWCNho" value="Đạt"> Đạt
+                <input type="radio" name="bonCauWCNho" value="Không đạt"> Không đạt
+                <br><br>
+                <label>Quạt hút:</label>
+                <input type="radio" name="quatHutWCNho" value="Đạt"> Đạt
+                <input type="radio" name="quatHutWCNho" value="Không đạt"> Không đạt
+            </fieldset>
+            <br><br>
+
+            <!-- 13. Ghi chú -->
+            <fieldset>
+                <legend>Ghi chú</legend>
+                <textarea name="ghiChu" rows="5" style="width:100%;" placeholder="Nhập ghi chú..."></textarea>
+            </fieldset>
+
+            <br>
+            <button type="submit">Gửi</button>
+            <button type="button" onclick="window.history.back()">Quay lại</button>
+            <button type="button" id="sendToSheet">Đẩy dữ liệu lên Google Sheet</button>
+        </form>
+    </main>
+</body>
+</html>
