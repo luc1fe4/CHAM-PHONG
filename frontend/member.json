@@ -1,40 +1,1824 @@
 [
     {
         "room": "015",
+        "floor": 0,
         "members": [
-            "Phan Lê Nhật Anh",
-            "Bùi Phương Anh",
-            "Nguyễn Thanh Sang",
-            "Lê Minh Quyết",
-            "Trần Quốc Tuấn",
-            "Lê Văn Châu",
-            "Nguyễn Quốc Anh",
-            "Nguyễn Quốc Kiệt"
+            {
+                "mssv": "2301010",
+                "name": "Phan Lê Nhật Anh"
+            },
+            {
+                "mssv": "2301011",
+                "name": "Bùi Phương Anh"
+            },
+            {
+                "mssv": "2301012",
+                "name": "Nguyễn Thanh Sang"
+            },
+            {
+                "mssv": "2301015",
+                "name": "Trần Quốc Tuấn"
+            },
+            {
+                "mssv": "2301016",
+                "name": "Lê Văn Châu"
+            },
+            {
+                "mssv": "2301025",
+                "name": "Nguyễn Quốc Anh"
+            },
+            {
+                "mssv": "2301005",
+                "name": "Nguyễn Quốc Kiệt"
+            },
+            {
+                "mssv": "2301001",
+                "name": "Nguyễn Mạnh Toàn"
+            }
         ]
     },
     {
         "room": "016",
+        "floor": 0,
         "members": [
-            "Bùi Trần Nhựt Tiến",
-            "Lý Tuấn Vĩ",
-            "Nguyễn Tấn Tiến",
-            "Nguyễn Bảo Trọng",
-            "Phạm Vinh Quang",
-            "Nguyễn Ngô Đức Toàn",
-            "Nguyễn Văn Thanh",
-            "Trần Thành Danh"
+            {
+                "mssv": "2301033",
+                "name": "Hồ Thanh Tâm"
+            },
+            {
+                "mssv": "2301034",
+                "name": "Nguyễn Văn Tuấn Trung"
+            },
+            {
+                "mssv": "2301035",
+                "name": "Trương Hồng Quân"
+            },
+            {
+                "mssv": "2301038",
+                "name": "Huỳnh Dương Dương"
+            },
+            {
+                "mssv": "2301039",
+                "name": "Trương Văn Mạnh"
+            },
+            {
+                "mssv": "2301040",
+                "name": "Điểu Chương"
+            },
+            {
+                "mssv": "2201036",
+                "name": "Trần Quý Huy"
+            },
+            {
+                "mssv": "2201021",
+                "name": "Võ Bá Toàn"
+            }
+        ]
+    },
+    {
+        "room": "017",
+        "floor": 0,
+        "members": [
+            {
+                "mssv": "2301008",
+                "name": "Trương Văn Hoài Khanh"
+            },
+            {
+                "mssv": "2301007",
+                "name": "Trương Tấn Tài"
+            },
+            {
+                "mssv": "2301026",
+                "name": "Đặng Lê Khiêm"
+            },
+            {
+                "mssv": "2301027",
+                "name": "Nguyễn Thành Đức"
+            },
+            {
+                "mssv": "2301028",
+                "name": "Trần Văn Anh Thư"
+            },
+            {
+                "mssv": "2301029",
+                "name": "Nguyễn Ngọc Sơn"
+            },
+            {
+                "mssv": "2301030",
+                "name": "Võ Lê Quốc Ái"
+            },
+            {
+                "mssv": "2301032",
+                "name": "Từ Quang Chương"
+            }
+        ]
+    },
+    {
+        "room": "018",
+        "floor": 0,
+        "members": [
+            {
+                "mssv": "2301017",
+                "name": "Dương Văn Súa"
+            },
+            {
+                "mssv": "2301019",
+                "name": "Đoàn Danh Dự"
+            },
+            {
+                "mssv": "2301021",
+                "name": "Trần Nguyễn Chí Huy"
+            },
+            {
+                "mssv": "2301022",
+                "name": "Nguyễn Văn Khởi"
+            },
+            {
+                "mssv": "2301023",
+                "name": "Lê Minh Chí Hùng"
+            },
+            {
+                "mssv": "2301024",
+                "name": "Nguyễn Bá Việt Tuấn"
+            },
+            {
+                "mssv": "2301002",
+                "name": "Hoàng Đức Thiện"
+            },
+            {
+                "mssv": "2301003",
+                "name": "Nguyễn Ngọc Phát"
+            }
+        ]
+    },
+    {
+        "room": "101",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2602001",
+                "name": "Đỗ Lê Mỹ Ngọc"
+            },
+            {
+                "mssv": "2602002",
+                "name": "Lê Thị Thiên Thanh"
+            },
+            {
+                "mssv": "2602004",
+                "name": "Ngô Thị Xuân Mai"
+            },
+            {
+                "mssv": "2602005",
+                "name": "Nguyễn Thảo Vy"
+            },
+            {
+                "mssv": "2602006",
+                "name": "Nguyễn Thị Thanh Trúc"
+            },
+            {
+                "mssv": "2602007",
+                "name": "Nguyễn Thị Út Thơm"
+            },
+            {
+                "mssv": "2602008",
+                "name": "Võ Thị Vi Na"
+            }
+        ]
+    },
+    {
+        "room": "102",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2602009",
+                "name": "Lê Thị Ngọc Châu"
+            },
+            {
+                "mssv": "2602010",
+                "name": "Nguyễn Hải Yến"
+            },
+            {
+                "mssv": "2602011",
+                "name": "Nguyễn Ngọc Minh Thư"
+            },
+            {
+                "mssv": "2602012",
+                "name": "Nguyễn Ngọc Tố Thanh"
+            },
+            {
+                "mssv": "2602013",
+                "name": "Trần Lê Yến Nhi"
+            },
+            {
+                "mssv": "2602014",
+                "name": "Trần Thái Vy"
+            },
+            {
+                "mssv": "2602015",
+                "name": "Lê Thị Huyền Trang"
+            },
+            {
+                "mssv": "2402006",
+                "name": "Nguyễn Trần Khả Vy"
+            }
+        ]
+    },
+    {
+        "room": "103",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2602016",
+                "name": "Nguyễn Bá Minh Vy"
+            },
+            {
+                "mssv": "2602017",
+                "name": "Trần Thị Ngọc Ánh"
+            },
+            {
+                "mssv": "2602018",
+                "name": "Lê Thị Mỹ Quá"
+            },
+            {
+                "mssv": "2602019",
+                "name": "Nguyễn Phùng Mỹ Duyên"
+            },
+            {
+                "mssv": "2602020",
+                "name": "Nguyễn Thị Nhiều"
+            },
+            {
+                "mssv": "2602021",
+                "name": "Nguyễn Thị Thanh Thảo"
+            },
+            {
+                "mssv": "2602022",
+                "name": "Phan Thị Bích Duyên"
+            },
+            {
+                "mssv": "2602023",
+                "name": "Tô Thị Nhã Phương"
+            }
+        ]
+    },
+    {
+        "room": "104",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2602024",
+                "name": "Nguyễn Ngọc Huyền Trân"
+            },
+            {
+                "mssv": "2602025",
+                "name": "Phùng Thục Phương Oanh"
+            },
+            {
+                "mssv": "2602026",
+                "name": "Võ Thị Bão Hân"
+            },
+            {
+                "mssv": "2602027",
+                "name": "Lê Thanh Thảo"
+            },
+            {
+                "mssv": "2602028",
+                "name": "Lỷ Trường Ngọc"
+            },
+            {
+                "mssv": "2602029",
+                "name": "Nguyễn Hoàng Vân Khánh"
+            },
+            {
+                "mssv": "2602030",
+                "name": "Trần Thị Ngọc Trâm"
+            },
+            {
+                "mssv": "2402004",
+                "name": "Nguyễn Thị Nhật Anh"
+            }
+        ]
+    },
+    {
+        "room": "106",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2202059",
+                "name": "Võ Thị Mỹ Quyên"
+            },
+            {
+                "mssv": "2202063",
+                "name": "Huỳnh Thị Kim Tuyến"
+            },
+            {
+                "mssv": "2302008",
+                "name": "Trần Thị Cẩm Lài"
+            },
+            {
+                "mssv": "2302009",
+                "name": "Nguyễn Ái Trân"
+            },
+            {
+                "mssv": "2302010",
+                "name": "Hồ Ngọc Tố Trinh"
+            },
+            {
+                "mssv": "2302012",
+                "name": "Hoàng Dương Ngọc Thủy"
+            },
+            {
+                "mssv": "2302013",
+                "name": "Nguyễn Thị Thanh Ân"
+            },
+            {
+                "mssv": "2302014",
+                "name": "Đặng Thị Quỳnh"
+            }
+        ]
+    },
+    {
+        "room": "107",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2302016",
+                "name": "Nguyễn Đinh Như Quỳnh"
+            },
+            {
+                "mssv": "2302017",
+                "name": "Lê Bảo Bảo"
+            },
+            {
+                "mssv": "2302019",
+                "name": "Lê Thị Mộng Quyên"
+            },
+            {
+                "mssv": "2302020",
+                "name": "Hoàng Thị Thùy Dung"
+            },
+            {
+                "mssv": "2302021",
+                "name": "Huỳnh Nguyễn Bảo Châu"
+            },
+            {
+                "mssv": "2302022",
+                "name": "Nguyễn Thị Minh Anh"
+            },
+            {
+                "mssv": "2302023",
+                "name": "Trương Thị Ánh Nguyệt"
+            },
+            {
+                "mssv": "2402002",
+                "name": "Hoàng Lê Ngọc Linh"
+            }
+        ]
+    },
+    {
+        "room": "108",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2302024",
+                "name": "Nguyễn Thị Ngọc Quý"
+            },
+            {
+                "mssv": "2302025",
+                "name": "Nguyễn Thị Diên"
+            },
+            {
+                "mssv": "2302027",
+                "name": "Huỳnh Thị Hạnh"
+            },
+            {
+                "mssv": "2302028",
+                "name": "Ngô Thị Hồng Hà"
+            },
+            {
+                "mssv": "2302029",
+                "name": "Nguyễn Thạch Thảo"
+            },
+            {
+                "mssv": "2302030",
+                "name": "Nguyễn Thị Hồng Cẩm"
+            },
+            {
+                "mssv": "2302031",
+                "name": "Nguyễn Kim Khánh"
+            },
+            {
+                "mssv": "2202037",
+                "name": "Ngô Thị Thương"
+            }
+        ]
+    },
+    {
+        "room": "109",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2302032",
+                "name": "Tạ Thị Huỳnh Như"
+            },
+            {
+                "mssv": "2302033",
+                "name": "Phan Thị Thùy Dung"
+            },
+            {
+                "mssv": "2302034",
+                "name": "Phạm Lê Ngọc Mỹ"
+            },
+            {
+                "mssv": "2302035",
+                "name": "Phan Thị Thanh Nguyệt"
+            },
+            {
+                "mssv": "2302036",
+                "name": "Phạm Thạch An Khánh"
+            },
+            {
+                "mssv": "2302037",
+                "name": "Trần Thị Thanh Trúc"
+            },
+            {
+                "mssv": "2302038",
+                "name": "Trương Thị Hồng Loan"
+            },
+            {
+                "mssv": "2302039",
+                "name": "Lê Quỳnh Như"
+            }
+        ]
+    },
+    {
+        "room": "111",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2302040",
+                "name": "Vũ Hoàng Oanh"
+            },
+            {
+                "mssv": "2302041",
+                "name": "Hồ Thị Xuân Diệu"
+            },
+            {
+                "mssv": "2302042",
+                "name": "Bùi Xuân Nghĩa"
+            },
+            {
+                "mssv": "2302043",
+                "name": "Nguyễn Hà Ninh Châu"
+            },
+            {
+                "mssv": "2302044",
+                "name": "Đặng Thanh Mai"
+            },
+            {
+                "mssv": "2302045",
+                "name": "Lê Nguyễn Mai Phương"
+            },
+            {
+                "mssv": "2302046",
+                "name": "Nguyễn Thị Thanh Tâm"
+            },
+            {
+                "mssv": "2302047",
+                "name": "Phan Ngọc Tuyền"
+            }
+        ]
+    },
+    {
+        "room": "112",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2402051",
+                "name": "Trần Thị Thanh Ngân"
+            },
+            {
+                "mssv": "2302001",
+                "name": "Võ Thị Kiều Oanh"
+            },
+            {
+                "mssv": "2302002",
+                "name": "Phạm Thị Lan"
+            },
+            {
+                "mssv": "2302003",
+                "name": "Huỳnh Thị Thảo Vân"
+            },
+            {
+                "mssv": "2302004",
+                "name": "Lê Thị Thanh Hằng"
+            },
+            {
+                "mssv": "2302005",
+                "name": "Nguyễn Thị Thuỳ Nhiên"
+            },
+            {
+                "mssv": "2302006",
+                "name": "Hồ Thị Bạch Liên"
+            },
+            {
+                "mssv": "2302007",
+                "name": "Huỳnh Nhi"
+            }
+        ]
+    },
+    {
+        "room": "114",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2202053",
+                "name": "Lê Thị Hương"
+            },
+            {
+                "mssv": "2302048",
+                "name": "Đỗ Thanh Huyền"
+            },
+            {
+                "mssv": "2302050",
+                "name": "Huỳnh Gia Huyên"
+            },
+            {
+                "mssv": "2302051",
+                "name": "Hồ Thị Thu Yến"
+            },
+            {
+                "mssv": "2302052",
+                "name": "Nguyễn Thị Thu Hiền"
+            },
+            {
+                "mssv": "2302053",
+                "name": "Nguyễn Thị Như Ý"
+            },
+            {
+                "mssv": "2302054",
+                "name": "Khổng Thị Mỹ Ngọc"
+            },
+            {
+                "mssv": "2302018",
+                "name": "Nguyễn Trần Ngọc Ngọc"
+            }
+        ]
+    },
+    {
+        "room": "115",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2402007",
+                "name": "Trần Thị Kim Mỹ"
+            },
+            {
+                "mssv": "2402034",
+                "name": "Đinh Thị Khánh Linh"
+            },
+            {
+                "mssv": "2402035",
+                "name": "Nguyễn Ngô Thảo Vân"
+            },
+            {
+                "mssv": "2402037",
+                "name": "Nguyễn Huyền Trân"
+            },
+            {
+                "mssv": "2402038",
+                "name": "Nguyễn Thị Thu Hà"
+            },
+            {
+                "mssv": "2402039",
+                "name": "Trần Thị Kim Hồng"
+            },
+            {
+                "mssv": "2402040",
+                "name": "Vũ Thị Thu An"
+            },
+            {
+                "mssv": "2402055",
+                "name": "Nguyễn Thị Hồng My"
+            }
+        ]
+    },
+    {
+        "room": "116",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2402043",
+                "name": "Đào Nguyễn Thanh Tiền"
+            },
+            {
+                "mssv": "2402044",
+                "name": "Hồ Võ Anh Thư"
+            },
+            {
+                "mssv": "2402045",
+                "name": "Lê Kim Xuyến"
+            },
+            {
+                "mssv": "2402046",
+                "name": "Ngô Hồng Nguyên"
+            },
+            {
+                "mssv": "2402047",
+                "name": "Nguyễn Ngọc Hải Yến"
+            },
+            {
+                "mssv": "2402048",
+                "name": "Nguyễn Thị Duyên"
+            },
+            {
+                "mssv": "2402049",
+                "name": "Nguyễn Thị Ngọc Huỳnh"
+            },
+            {
+                "mssv": "2402050",
+                "name": "Phan Như Quỳnh"
+            }
+        ]
+    },
+    {
+        "room": "117",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2402033",
+                "name": "Đặng Ngọc Hoài Phương"
+            },
+            {
+                "mssv": "2402025",
+                "name": "Huỳnh Thanh Tuyền"
+            },
+            {
+                "mssv": "2402026",
+                "name": "Lê Hoàng Mỹ Hạ"
+            },
+            {
+                "mssv": "2402027",
+                "name": "Lê Ngọc Bích Phượng"
+            },
+            {
+                "mssv": "2402029",
+                "name": "Nguyễn Hoàng Mai Trinh"
+            },
+            {
+                "mssv": "2402030",
+                "name": "Phương Ngọc Bích"
+            },
+            {
+                "mssv": "2402031",
+                "name": "Trần Thị Mỹ Nhi"
+            },
+            {
+                "mssv": "2402032",
+                "name": "Nguyễn Hải Cơ"
+            }
+        ]
+    },
+    {
+        "room": "118",
+        "floor": 1,
+        "members": [
+            {
+                "mssv": "2402009",
+                "name": "Bùi Thanh Huyền"
+            },
+            {
+                "mssv": "2402010",
+                "name": "Lê Huỳnh Ngọc Phượng"
+            },
+            {
+                "mssv": "2402011",
+                "name": "Lê Thị Kim Quỳnh"
+            },
+            {
+                "mssv": "2402012",
+                "name": "Nguyễn Thị Minh Thư"
+            },
+            {
+                "mssv": "2402013",
+                "name": "Trần Ngọc Tuyết Ngân"
+            },
+            {
+                "mssv": "2402014",
+                "name": "Đinh Y Như"
+            },
+            {
+                "mssv": "2402015",
+                "name": "Trần Thị Trang"
+            },
+            {
+                "mssv": "2402053",
+                "name": "Đoàn Thị Bích Trâm"
+            }
+        ]
+    },
+    {
+        "room": "201",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2602032",
+                "name": "Huỳnh Thùy Mỵ"
+            },
+            {
+                "mssv": "2602033",
+                "name": "Nguyễn Thị Ngọc Hồng"
+            },
+            {
+                "mssv": "2602035",
+                "name": "Nguyễn Thanh Trà"
+            }
+        ]
+    },
+    {
+        "room": "202",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2602036",
+                "name": "Dương Thị Khánh Diệu"
+            },
+            {
+                "mssv": "2602037",
+                "name": "Nguyễn Lê Mỹ Ngọc"
+            },
+            {
+                "mssv": "2602038",
+                "name": "Nguyễn Ngọc Hân"
+            },
+            {
+                "mssv": "2602039",
+                "name": "Nguyễn Thị Quỳnh Hoa"
+            },
+            {
+                "mssv": "2602040",
+                "name": "Trương Hồ Bảo Ngọc"
+            },
+            {
+                "mssv": "2602041",
+                "name": "Đặng Thảo My"
+            },
+            {
+                "mssv": "2602043",
+                "name": "Cao Thị Ngọc Ánh"
+            }
+        ]
+    },
+    {
+        "room": "203",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2602044",
+                "name": "Nguyễn Phạm Yến Như"
+            },
+            {
+                "mssv": "2602045",
+                "name": "Nguyễn Thị Quỳnh Viên"
+            },
+            {
+                "mssv": "2602046",
+                "name": "Nguyễn Thị Thu Thuận"
+            },
+            {
+                "mssv": "2602047",
+                "name": "Nguyễn Ngọc Thanh Tuyền"
+            },
+            {
+                "mssv": "2602049",
+                "name": "Châu Huệ Mẫn"
+            },
+            {
+                "mssv": "2602051",
+                "name": "Trương Như Ý"
+            }
+        ]
+    },
+    {
+        "room": "204",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2602052",
+                "name": "Lê Thị Huyền Trân"
+            },
+            {
+                "mssv": "2602053",
+                "name": "Nguyễn Thị Kim Ngân"
+            },
+            {
+                "mssv": "2602054",
+                "name": "Nguyễn Thị Thúy Nga"
+            },
+            {
+                "mssv": "2602055",
+                "name": "Nguyễn Thị Uyên Phương"
+            },
+            {
+                "mssv": "2602056",
+                "name": "Bùi Thị Như Quỳnh"
+            },
+            {
+                "mssv": "2602057",
+                "name": "Cao Thị Huỳnh Thư"
+            },
+            {
+                "mssv": "2602058",
+                "name": "Đỗ Thị Kim Tiết"
+            },
+            {
+                "mssv": "2602059",
+                "name": "Nguyễn Ngọc Thiên Kiều"
+            }
+        ]
+    },
+    {
+        "room": "206",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2402003",
+                "name": "Ka' Xuân"
+            },
+            {
+                "mssv": "2402041",
+                "name": "Lê Ngọc Diễm"
+            },
+            {
+                "mssv": "2402042",
+                "name": "Trần Hồng Quyên"
+            },
+            {
+                "mssv": "2402054",
+                "name": "Dương Thị Tú Yến"
+            },
+            {
+                "mssv": "2402005",
+                "name": "Nguyễn Thị Thùy Dung"
+            },
+            {
+                "mssv": "2402008",
+                "name": "Trương Thị Thanh Xuân"
+            },
+            {
+                "mssv": "2402001",
+                "name": "Đoàn Thái Linh"
+            },
+            {
+                "mssv": "2402052",
+                "name": "K' G Làng"
+            }
+        ]
+    },
+    {
+        "room": "207",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2402017",
+                "name": "Nguyễn An Duyên"
+            },
+            {
+                "mssv": "2402018",
+                "name": "Dương Khả Vân"
+            },
+            {
+                "mssv": "2402019",
+                "name": "Nguyễn Lê Tâm Như"
+            },
+            {
+                "mssv": "2402020",
+                "name": "Lê Thị Thành Ngân"
+            },
+            {
+                "mssv": "2402021",
+                "name": "Lê Thị Bảo Châu"
+            },
+            {
+                "mssv": "2402022",
+                "name": "Lê Thái Ngọc Hà"
+            },
+            {
+                "mssv": "2402023",
+                "name": "Lê Bảo Trân"
+            },
+            {
+                "mssv": "2402024",
+                "name": "Trần Thị Kim Trang"
+            }
+        ]
+    },
+    {
+        "room": "208",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502017",
+                "name": "Lê Kiều Hân"
+            },
+            {
+                "mssv": "2502018",
+                "name": "Huỳnh Thị Kim Quyên"
+            },
+            {
+                "mssv": "2502019",
+                "name": "Hồ Thị Huỳnh My"
+            },
+            {
+                "mssv": "2502020",
+                "name": "Dương Kim Hằng"
+            },
+            {
+                "mssv": "2502021",
+                "name": "Nguyễn Thị Kiều Nhi"
+            },
+            {
+                "mssv": "2502022",
+                "name": "Dương Thị Hồng Nhi"
+            },
+            {
+                "mssv": "2502023",
+                "name": "Lê Thị Liên"
+            },
+            {
+                "mssv": "2502077",
+                "name": "Nguyễn Thị Mỹ Duyên"
+            }
+        ]
+    },
+    {
+        "room": "209",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502025",
+                "name": "Phan Thị Dự Thùy"
+            },
+            {
+                "mssv": "2502026",
+                "name": "Võ Thị Thanh Nhàn"
+            },
+            {
+                "mssv": "2502027",
+                "name": "Nguyễn Thị Hồng Như"
+            },
+            {
+                "mssv": "2502028",
+                "name": "Nguyễn Thị Minh Thư"
+            },
+            {
+                "mssv": "2502029",
+                "name": "Bùi Thị Thủy Tiên"
+            },
+            {
+                "mssv": "2502030",
+                "name": "Nguyễn Hạnh Nguyên"
+            },
+            {
+                "mssv": "2502031",
+                "name": "Nguyễn Thái Quỳnh Giang"
+            },
+            {
+                "mssv": "2502032",
+                "name": "Huỳnh Thị Thảo Vy"
+            }
+        ]
+    },
+    {
+        "room": "211",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502002",
+                "name": "Bùi Thị Châu Linh"
+            },
+            {
+                "mssv": "2502005",
+                "name": "Trần Nhã Tuyết Nhung"
+            },
+            {
+                "mssv": "2502006",
+                "name": "Võ Thị Hồng Nguyện"
+            },
+            {
+                "mssv": "2502007",
+                "name": "Lê Anh Thư"
+            },
+            {
+                "mssv": "2502008",
+                "name": "Võ Trúc Quỳnh"
+            },
+            {
+                "mssv": "2502072",
+                "name": "Đặng Diễm Quỳnh"
+            },
+            {
+                "mssv": "2502040",
+                "name": "Bùi Thanh Nhàn"
+            },
+            {
+                "mssv": "2502074",
+                "name": "Lê Nguyễn Thanh Duyên"
+            }
+        ]
+    },
+    {
+        "room": "212",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502033",
+                "name": "Nguyễn Thị Tuyết Nhung"
+            },
+            {
+                "mssv": "2502034",
+                "name": "Huỳnh Võ Thùy Trâm"
+            },
+            {
+                "mssv": "2502035",
+                "name": "Trịnh Lê Khả Vy"
+            },
+            {
+                "mssv": "2502036",
+                "name": "Nguyễn Kiều Nhung"
+            },
+            {
+                "mssv": "2502037",
+                "name": "Nguyễn Mỹ Hạnh"
+            },
+            {
+                "mssv": "2502038",
+                "name": "Thị Linh"
+            },
+            {
+                "mssv": "2502039",
+                "name": "Trần Ngọc Hân"
+            },
+            {
+                "mssv": "2502075",
+                "name": "Âu Thị Thanh Phúc"
+            }
+        ]
+    },
+    {
+        "room": "214",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502009",
+                "name": "Bùi Kim Thoa"
+            },
+            {
+                "mssv": "2502010",
+                "name": "Huỳnh Thị Trúc Ngân"
+            },
+            {
+                "mssv": "2502011",
+                "name": "Võ Thị Trúc Ly"
+            },
+            {
+                "mssv": "2502012",
+                "name": "Lê Nguyễn Hoài Hướng"
+            },
+            {
+                "mssv": "2502013",
+                "name": "Nguyễn Thị Hồng Nhiên"
+            },
+            {
+                "mssv": "2502014",
+                "name": "Trần Thị Hồng Nhung"
+            },
+            {
+                "mssv": "2502015",
+                "name": "Lê Thị Triều Mến"
+            },
+            {
+                "mssv": "2502016",
+                "name": "Phạm Thị Thu Hiền"
+            }
+        ]
+    },
+    {
+        "room": "215",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502078",
+                "name": "Nguyễn Đỗ Như Hằng"
+            },
+            {
+                "mssv": "2502041",
+                "name": "Đồng Thị Ngọc Tuyền"
+            },
+            {
+                "mssv": "2502042",
+                "name": "Lê Thị Ngọc Vy"
+            },
+            {
+                "mssv": "2502043",
+                "name": "Phan Thị Hồ Tính"
+            },
+            {
+                "mssv": "2502044",
+                "name": "Lê Diệu Tâm"
+            },
+            {
+                "mssv": "2502045",
+                "name": "Lê Thị Thuỳ Linh"
+            },
+            {
+                "mssv": "2502046",
+                "name": "Vũ Thị Hiếu"
+            },
+            {
+                "mssv": "2502047",
+                "name": "Mai Thị Ánh Tuyết"
+            }
+        ]
+    },
+    {
+        "room": "216",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502048",
+                "name": "Lê Thị Mỹ Hạnh"
+            },
+            {
+                "mssv": "2502049",
+                "name": "Nguyễn Thị Huyền"
+            },
+            {
+                "mssv": "2502050",
+                "name": "Danh Thị Thu Hà"
+            },
+            {
+                "mssv": "2502051",
+                "name": "Nguyễn Ngọc Như Ý"
+            },
+            {
+                "mssv": "2502052",
+                "name": "Nguyễn Kiều My"
+            },
+            {
+                "mssv": "2502053",
+                "name": "Trần Thị Thu Hồng"
+            },
+            {
+                "mssv": "2502054",
+                "name": "Lê Thị Nhị"
+            },
+            {
+                "mssv": "2502073",
+                "name": "Võ Nguyễn Phương Anh"
+            }
+        ]
+    },
+    {
+        "room": "217",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502056",
+                "name": "Trần Lâm Anh Thư"
+            },
+            {
+                "mssv": "2502057",
+                "name": "Huỳnh Thị Thiên An"
+            },
+            {
+                "mssv": "2502058",
+                "name": "Nguyễn Thị Thùy Linh"
+            },
+            {
+                "mssv": "2502059",
+                "name": "Ông Thành Vân Anh"
+            },
+            {
+                "mssv": "2502060",
+                "name": "Võ Thị Cẩm Ly"
+            },
+            {
+                "mssv": "2502061",
+                "name": "Lưu Ngọc Hoa"
+            },
+            {
+                "mssv": "2502062",
+                "name": "Võ Ngọc Minh Thư"
+            },
+            {
+                "mssv": "2502063",
+                "name": "Đoàn Thị Thùy Duyên"
+            }
+        ]
+    },
+    {
+        "room": "218",
+        "floor": 2,
+        "members": [
+            {
+                "mssv": "2502064",
+                "name": "Trần Thị Mỹ Linh"
+            },
+            {
+                "mssv": "2502065",
+                "name": "Hà Thị Bích Tuyền"
+            },
+            {
+                "mssv": "2502066",
+                "name": "Khổng Thị Mỹ Trâm"
+            },
+            {
+                "mssv": "2502067",
+                "name": "Nguyễn Đình Thảo Như"
+            },
+            {
+                "mssv": "2502068",
+                "name": "Nguyễn Ngọc Quỳnh Hương"
+            },
+            {
+                "mssv": "2502069",
+                "name": "Hồ Trúc Hương Giang"
+            },
+            {
+                "mssv": "2502070",
+                "name": "Phan Diệu Linh"
+            },
+            {
+                "mssv": "2502071",
+                "name": "Phạm Thị Thanh"
+            }
+        ]
+    },
+        {
+        "room": "301",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2601001",
+                "name": "Đặng Tuấn Kha"
+            },
+            {
+                "mssv": "2601002",
+                "name": "Đỗ Văn Đức Đạt"
+            },
+            {
+                "mssv": "2601003",
+                "name": "Huỳnh Gia An"
+            },
+            {
+                "mssv": "2601004",
+                "name": "Nguyễn Gia Bảo"
+            },
+            {
+                "mssv": "2601005",
+                "name": "Nguyễn Thái Sơn"
+            },
+            {
+                "mssv": "2601006",
+                "name": "Phạm Gia Khôi"
+            },
+            {
+                "mssv": "2601007",
+                "name": "Võ Thành Nhân"
+            },
+            {
+                "mssv": "2601008",
+                "name": "Nguyễn Đỗ Hiếu"
+            }
+        ]
+    },
+    {
+        "room": "302",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2601009",
+                "name": "Lê Thanh Sang"
+            },
+            {
+                "mssv": "2601010",
+                "name": "Nguyễn Văn Thương"
+            },
+            {
+                "mssv": "2601011",
+                "name": "Phạm Hồng Phúc"
+            },
+            {
+                "mssv": "2601012",
+                "name": "Võ Ngọc Sinh"
+            },
+            {
+                "mssv": "2601013",
+                "name": "Nguyễn Ngọc Định"
+            },
+            {
+                "mssv": "2601014",
+                "name": "Nguyễn Thành Phúc"
+            },
+            {
+                "mssv": "2601015",
+                "name": "Võ Nguyễn Tấn Phát"
+            },
+            {
+                "mssv": "2601016",
+                "name": "Trương Quốc Anh"
+            }
+        ]
+    },
+    {
+        "room": "303",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2601017",
+                "name": "Lê Võ Đức Huy"
+            },
+            {
+                "mssv": "2601018",
+                "name": "Châu Nguyễn Thanh Duy"
+            },
+            {
+                "mssv": "2601019",
+                "name": "Đỗ Thanh Truyền"
+            },
+            {
+                "mssv": "2601020",
+                "name": "Nguyễn Như Thuật"
+            },
+            {
+                "mssv": "2601021",
+                "name": "Nguyễn Thanh Trung"
+            },
+            {
+                "mssv": "2601022",
+                "name": "Nguyễn Văn Hảo"
+            },
+            {
+                "mssv": "2601024",
+                "name": "Vũ Quốc Huy"
+            }
+        ]
+    },
+    {
+        "room": "304",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2601025",
+                "name": "Chế Thanh Danh"
+            },
+            {
+                "mssv": "2601026",
+                "name": "Hồ Quang Chí Mỹ"
+            },
+            {
+                "mssv": "2601028",
+                "name": "Lâm Thanh Toàn"
+            },
+            {
+                "mssv": "2601029",
+                "name": "Nguyễn Duy Nam"
+            },
+            {
+                "mssv": "2601030",
+                "name": "Nguyễn Việt Thành"
+            },
+            {
+                "mssv": "2601031",
+                "name": "Thân Hoàng Phúc"
+            },
+            {
+                "mssv": "2601032",
+                "name": "Tô Thanh Tiền"
+            },
+            {
+                "mssv": "2601046",
+                "name": "Huỳnh Hữu Hoài"
+            }
+        ]
+    },
+    {
+        "room": "306",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2601034",
+                "name": "Hồ Tấn Lộc"
+            },
+            {
+                "mssv": "2601035",
+                "name": "Nguyễn Duy Quang"
+            },
+            {
+                "mssv": "2601036",
+                "name": "Nguyễn Hoàng Trọng"
+            },
+            {
+                "mssv": "2601037",
+                "name": "Nguyễn Trường Thịnh"
+            },
+            {
+                "mssv": "2601038",
+                "name": "Phạm Thế Hiền"
+            },
+            {
+                "mssv": "2601040",
+                "name": "Trần Văn Giàu"
+            },
+            {
+                "mssv": "2601042",
+                "name": "Bùi Giang Nguyên Khôi"
+            },
+            {
+                "mssv": "2601043",
+                "name": "Nguyễn Minh Nhựt"
+            }
+        ]
+    },
+    {
+        "room": "307",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2501009",
+                "name": "Bùi Quang Dũng"
+            },
+            {
+                "mssv": "2501010",
+                "name": "Dương Phạm Hoàng Anh"
+            },
+            {
+                "mssv": "2501011",
+                "name": "Trần Minh Hậu"
+            },
+            {
+                "mssv": "2501012",
+                "name": "Lê Văn Huy"
+            },
+            {
+                "mssv": "2501013",
+                "name": "Nguyễn Hữu Nghĩa"
+            },
+            {
+                "mssv": "2501015",
+                "name": "Nguyễn Quốc Nguyên"
+            },
+            {
+                "mssv": "2501016",
+                "name": "Nguyễn Đông Quân"
+            },
+            {
+                "mssv": "2501041",
+                "name": "Nguyễn Tiến Đạt"
+            }
+        ]
+    },
+    {
+        "room": "308",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2501001",
+                "name": "Nguyễn Hải Đức"
+            },
+            {
+                "mssv": "2501002",
+                "name": "Nguyễn Thanh Liêm"
+            },
+            {
+                "mssv": "2501003",
+                "name": "Nguyễn Ngọc Phước"
+            },
+            {
+                "mssv": "2501004",
+                "name": "Võ Thành Đạt"
+            },
+            {
+                "mssv": "2501005",
+                "name": "Nguyễn Trường Giang"
+            },
+            {
+                "mssv": "2501006",
+                "name": "Lâm Viết Đạt"
+            },
+            {
+                "mssv": "2501007",
+                "name": "Bùi Minh Thắng"
+            },
+            {
+                "mssv": "2501008",
+                "name": "Nguyễn Hoàng Nhân"
+            }
+        ]
+    },
+    {
+        "room": "309",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2501043",
+                "name": "Trần Thanh Điền"
+            },
+            {
+                "mssv": "2501017",
+                "name": "Đoàn Nguyễn Thái Lộc"
+            },
+            {
+                "mssv": "2501018",
+                "name": "Nguyễn Quang Ngọc"
+            },
+            {
+                "mssv": "2501019",
+                "name": "Danh Thành Trí"
+            },
+            {
+                "mssv": "2501020",
+                "name": "Nguyễn Lê Hoàng Thiện"
+            },
+            {
+                "mssv": "2501021",
+                "name": "Đoàn Trí Khoa"
+            },
+            {
+                "mssv": "2501022",
+                "name": "Trương Quang Vinh"
+            },
+            {
+                "mssv": "2501023",
+                "name": "Phan Phước Toàn"
+            }
+        ]
+    },
+    {
+        "room": "311",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2501025",
+                "name": "Trần Văn Mạnh"
+            },
+            {
+                "mssv": "2501026",
+                "name": "Nguyễn Quang Lộc"
+            },
+            {
+                "mssv": "2501027",
+                "name": "Lê Hoàng Nam"
+            },
+            {
+                "mssv": "2501028",
+                "name": "Đoàn Trí Nhân"
+            },
+            {
+                "mssv": "2501029",
+                "name": "Nguyễn Phúc Hậu"
+            },
+            {
+                "mssv": "2501030",
+                "name": "Chế Hoàng Du"
+            },
+            {
+                "mssv": "2501032",
+                "name": "Nguyễn Quốc Huy"
+            },
+            {
+                "mssv": "2501038",
+                "name": "Lê Quang Huy"
+            }
+        ]
+    },
+    {
+        "room": "312",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2501033",
+                "name": "Dương Quốc Việt"
+            },
+            {
+                "mssv": "2501034",
+                "name": "Phạm Hữu Thạch"
+            },
+            {
+                "mssv": "2501035",
+                "name": "Nguyễn Trung Minh Phát"
+            },
+            {
+                "mssv": "2501036",
+                "name": "Nguyễn Tấn Đạt"
+            },
+            {
+                "mssv": "2501037",
+                "name": "Trương Bảo Duy"
+            },
+            {
+                "mssv": "2501039",
+                "name": "Ngô Hoài Phát"
+            },
+            {
+                "mssv": "2501040",
+                "name": "Nguyễn Hồng Đức"
+            },
+            {
+                "mssv": "2501042",
+                "name": "Nguyễn Tuấn Kiệt"
+            }
         ]
     },
     {
         "room": "314",
+        "floor": 3,
         "members": [
-            "Lê Công Phúc",
-            "Quách Hải Thọ",
-            "Trương Văn Phước",
-            "Trần Trung Toàn",
-            "Liêu Vĩnh Hưng",
-            "Đinh Bình An",
-            "Phan Hữu Nhân"
+            {
+                "mssv": "2401016",
+                "name": "Đinh Bình An"
+            },
+            {
+                "mssv": "2401017",
+                "name": "Lê Công Phúc"
+            },
+            {
+                "mssv": "2401020",
+                "name": "Phan Hữu Nhân"
+            },
+            {
+                "mssv": "2401022",
+                "name": "Trần Trung Toàn"
+            },
+            {
+                "mssv": "2401034",
+                "name": "Quách Hải Thọ"
+            },
+            {
+                "mssv": "2401037",
+                "name": "Liêu Vỉnh Hưng"
+            },
+            {
+                "mssv": "2401038",
+                "name": "Trương Văn Phước"
+            },
+            {
+                "mssv": "2601047",
+                "name": "Nguyễn Nhật Anh"
+            }
+        ]
+    },
+    {
+        "room": "315",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2401008",
+                "name": "Võ Tấn Quỳnh"
+            },
+            {
+                "mssv": "2401009",
+                "name": "Trần Tấn Phát"
+            },
+            {
+                "mssv": "2401010",
+                "name": "Nguyễn Hữu Thời"
+            },
+            {
+                "mssv": "2401012",
+                "name": "Huỳnh Hữu Nghĩa"
+            },
+            {
+                "mssv": "2401013",
+                "name": "Trần Văn Hoàng"
+            },
+            {
+                "mssv": "2401014",
+                "name": "Trần Tuấn Khanh"
+            },
+            {
+                "mssv": "2601048",
+                "name": "Lê Minh Quân"
+            },
+            {
+                "mssv": "2601049",
+                "name": "Đỗ Ngọc Trọng"
+            }
+        ]
+    },
+    {
+        "room": "316",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2401015",
+                "name": "Dương Trần Anh Tú"
+            },
+            {
+                "mssv": "2401018",
+                "name": "Huỳnh Phúc Quang Tú"
+            },
+            {
+                "mssv": "2401019",
+                "name": "Nguyễn Anh Quân"
+            },
+            {
+                "mssv": "2401031",
+                "name": "Lê Vũ Hào"
+            },
+            {
+                "mssv": "2401032",
+                "name": "Nguyễn Văn Pháp"
+            },
+            {
+                "mssv": "2401033",
+                "name": "Huỳnh Văn Sỷ"
+            },
+            {
+                "mssv": "2401036",
+                "name": "Nguyễn Xuân Vũ"
+            },
+            {
+                "mssv": "2601044",
+                "name": "Võ Doãn Hiếu"
+            }
+        ]
+    },
+    {
+        "room": "317",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2401002",
+                "name": "Nguyễn Nam Trung"
+            },
+            {
+                "mssv": "2401003",
+                "name": "Huỳnh Văn Quế Khoa"
+            },
+            {
+                "mssv": "2401004",
+                "name": "Nguyễn Minh Nghĩa"
+            },
+            {
+                "mssv": "2401005",
+                "name": "Trần Minh Quan"
+            },
+            {
+                "mssv": "2401006",
+                "name": "Trần Văn Hào"
+            },
+            {
+                "mssv": "2401021",
+                "name": "Nguyễn Huy Hoàng"
+            },
+            {
+                "mssv": "2401035",
+                "name": "Phạm Văn Tiến"
+            },
+            {
+                "mssv": "2601045",
+                "name": "Lê Trương Minh Đức"
+            }
+        ]
+    },
+    {
+        "room": "318",
+        "floor": 3,
+        "members": [
+            {
+                "mssv": "2401023",
+                "name": "Bùi Trần Nhựt Tiến"
+            },
+            {
+                "mssv": "2401024",
+                "name": "Lý Tuấn Vĩ"
+            },
+            {
+                "mssv": "2401025",
+                "name": "Nguyễn Tấn Tiến"
+            },
+            {
+                "mssv": "2401026",
+                "name": "Nguyễn Bảo Trọng"
+            },
+            {
+                "mssv": "2401027",
+                "name": "Phạm Vinh Quang"
+            },
+            {
+                "mssv": "2401028",
+                "name": "Nguyễn Ngô Đức Toàn"
+            },
+            {
+                "mssv": "2401029",
+                "name": "Nguyễn Văn Thanh"
+            },
+            {
+                "mssv": "2401030",
+                "name": "Trần Thành Danh"
+            }
         ]
     }
 ]

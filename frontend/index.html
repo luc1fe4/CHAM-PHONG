@@ -1,48 +1,204 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Thêm meta viewport tối ưu cho mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=yes, viewport-fit=cover">
+
+    <!-- Thêm theme color cho mobile browsers -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
     <title>CHAM-PHONG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap&subset=vietnamese" rel="stylesheet">
+
+    <link rel="stylesheet" href="style_form.css">
+    <link rel="stylesheet" href="style_main.css">
     <link rel="stylesheet" href="styles.css">
-    
+    <link rel="stylesheet" href="mobile-responsive.css">
+
 </head>
+
 <body>
     <!-- HEADER -->
     <header class="header">
-        <div>
-            <img src="images/ktxCM.png" alt="ktx Cỏ May" style="width: 70px; height: 70px;">
-            <img src="images/NongLam.png" alt="Đại học Nông Lâm" style="width: 70px; height: 70px; margin-left: 10px;">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <div class="logo">
+            <img src="images/ktxCM.png" alt="ktx Cà Mau" style="width:70px; height:70px;">
+            <img src="images/NongLam.png" alt="Đại học Nông Lâm" style="width:70px; height:70px; margin-left:10px;">
         </div>
-        <div>
-            <h1 id="pageHeading">CHẤM PHÒNG</h1>
-        </div>
-        <div class="inputContainer" style="max-width: 500px;">
-          <input
-            type="text"
-            class="form-control"
-            id="searchInput"
-            placeholder="Nhập nội dung tìm kiếm…"
-          />
-          </button>
-        </div>
+        <h1 id="pageHeading">CHẤM PHÒNG</h1>
     </header>
+
     <div>
         <section>
             <nav class="mainNav">
-               <ul>
-                    <li><a href="#">Trang chủ</a></li>
+                <ul>
+                    <li><a href="#" class="active">Trang chủ</a></li>
+                    <li><a href="#" id="chamPhongLink">Chấm phòng</a></li>
                     <li><a href="#">Liên hệ</a></li>
                 </ul>
             </nav>
         </section>
     </div>
-    <!--MAIN CONTENT-->
-    <main>
-        <div class="container">
-            <div id="roomList"></div>
+
+    <!-- MAIN CONTENT -->
+    <main>            
+        <!-- Function Tabs -->
+        <div class="function-tabs">
+            <nav class="tabs-nav">
+                <button data-tab="notes">Ghi chú</button>
+                <button data-tab="weeklyStats">Thống kê tuần</button>
+                <button data-tab="monthlyStats">Thống kê tháng</button>
+                <button data-tab="violations">Truy vấn điểm trừ</button>
+                <button data-tab="ranking">Xếp hạng</button>
+            </nav>
+        </div>
+        <div class="dashboard-content"></div>
+        <div class="main-container">
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Tab: Student List -->
+                <section id="student-list" class="tab-content active">
+                    <div class="excel-container">
+                        <!-- Controls Bar -->
+                        <div class="controls-bar">
+                            <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm theo MSSV, tên hoặc phòng...">
+                            <select id="roomFilter">    
+                                <option value="">Tất cả phòng</option>
+                            </select>
+                            <select id="floorFilter">
+                                <option value="">Tất cả tầng</option>
+                                <option value="0">Tầng 0</option>
+                                <option value="1">Tầng 1</option>
+                                <option value="2">Tầng 2</option>
+                                <option value="3">Tầng 3</option>
+                            </select>
+                            <button onclick="resetFilters()">Xóa bộ lọc</button>
+                            <button onclick="exportData()">Xuất Excel</button>
+                        </div>
+
+                        <!-- Stats Bar -->
+                        <div class="stats-bar">
+                            <div class="stat-item">
+                                <span>Tổng SV:</span>
+                                <span class="stat-number" id="totalStudents">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Tổng phòng:</span>
+                                <span class="stat-number" id="totalRooms">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>TB SV/phòng:</span>
+                                <span class="stat-number" id="avgStudents">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Đã lọc:</span>
+                                <span class="stat-number" id="filteredCount">0</span>
+                            </div>
+                        </div>
+
+                        <!-- Excel-like Table -->
+                        <div class="excel-table-wrapper">
+                            <table class="excel-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-stt">STT</th>
+                                        <th class="col-mssv">MSSV</th>
+                                        <th class="col-name">HỌ VÀ TÊN</th>
+                                        <th class="col-room">PHÒNG</th>
+                                        <th class="col-floor">TẦNG</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="studentTableBody">
+                                    <tr class="loading">
+                                        <td colspan="17">Đang tải dữ liệu...</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Room Overview -->
+                <section id="room-overview" class="tab-content">
+                    <div class="tab-panel">
+                        <h3>🏠 Tổng quan phòng ký túc xá</h3>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <span class="stat-card-number" id="occupiedRooms">0</span>
+                                <div class="stat-card-label">Phòng có người ở</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-card-number" id="emptyRooms">0</span>
+                                <div class="stat-card-label">Phòng trống</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-card-number" id="fullRooms">0</span>
+                                <div class="stat-card-label">Phòng đầy (8 người)</div>
+                            </div>
+                            <div class="stat-card">
+                                <span class="stat-card-number" id="occupancyRate">0%</span>
+                                <div class="stat-card-label">Tỷ lệ lấp đầy</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Statistics -->
+                <section id="statistics" class="tab-content">
+                    <div class="tab-panel">
+                        <h3>📊 Thống kê chi tiết</h3>
+                        <div class="empty-state">
+                            <p>Chức năng thống kê sẽ được phát triển trong phiên bản tiếp theo.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Attendance -->
+                <section id="attendance" class="tab-content">
+                    <div class="tab-panel">
+                        <h3>✅ Điểm danh sinh viên</h3>
+                        <div class="empty-state">
+                            <p>Chức năng điểm danh sẽ được phát triển trong phiên bản tiếp theo.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Reports -->
+                <section id="reports" class="tab-content">
+                    <div class="tab-panel">
+                        <h3>📑 Báo cáo</h3>
+                        <div class="empty-state">
+                            <p>Chức năng báo cáo sẽ được phát triển trong phiên bản tiếp theo.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Management -->
+                <section id="management" class="tab-content">
+                    <div class="tab-panel">
+                        <h3>⚙️ Quản lý hệ thống</h3>
+                        <div class="empty-state">
+                            <p>Chức năng quản lý sẽ được phát triển trong phiên bản tiếp theo.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
     </main>
-    <script src="scripts/script.js"></script>
+    
+    <!-- Firebase Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Custom Scripts -->
+    <script src="scripts/firebase-config.js"></script>
+    <script src="scripts/dashboard.js"></script>
+    <script src="scripts/notes.js"></script>
+    <script src="login.js"></script>
+    <script src="scripts/touch-interactions.js"></script>
 </body>
 </html>

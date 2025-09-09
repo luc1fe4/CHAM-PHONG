@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Thêm meta viewport tối ưu cho mobile -->
+  <meta name="viewport" content="width=device-width, initial-scale=0.5, user-scalable=yes, viewport-fit=cover">
+
+  <!-- Thêm theme color cho mobile browsers -->
+  <meta name="theme-color" content="#667eea">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <title>Chấm phòng</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap&subset=vietnamese" rel="stylesheet">
+
+  <link rel="stylesheet" href="style_form.css">
+  <link rel="stylesheet" href="style_main.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mobile-responsive.css">
+
+
+
+</head>
+<body>
+  <header class="header">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <div class="logo">
+      <img src="images/ktxCM.png" alt="ktx Cỏ May" style="width:70px; height:70px;">
+      <img src="images/NongLam.png" alt="Đại học Nông Lâm" style="width:70px; height:70px; margin-left:10px;">
+    </div>
+    <h1 id="pageHeading">CHẤM PHÒNG</h1>
+            <div class="inputContainer">
+            <input
+            type="text"
+            id="searchInput"
+            placeholder="Nhập mã phòng..."
+            />
+        </div>
+  </header>
+
+  <nav class="mainNav">
+    <ul>
+      <li><a href="index.html">Trang chủ</a></li>
+      <li><a href="champhong.html">Chấm phòng</a></li>
+      <li><a href="#">Liên hệ</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+        <div class="container">
+            <div id="roomList"></div>
+        </div>
+  </main>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+  <script src="scripts/search.js"></script>
+  <script src="scripts/script.js" defer></script> 
+  <script src="scripts/scoring.js"></script>
+</body>
+</html>

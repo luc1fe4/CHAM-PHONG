@@ -1,0 +1,739 @@
+/* ========== MOBILE RESPONSIVE CSS - FIXED ========== */
+
+/* Touch-friendly improvements */
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  touch-action: manipulation;
+}
+
+/* Mobile-first approach */
+@media screen and (max-width: 768px) {
+  
+  /* ========== GENERAL ========== */
+  body {
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* ========== HEADER - COMPACT ========== */
+  .header {
+    padding: 4px 8px;
+    min-height: 50px; /* Giảm từ 80px xuống 50px */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+    margin-right: 8px;
+  }
+
+  .logo img {
+    width: 30px !important; /* Giảm từ 45px xuống 30px */
+    height: 30px !important;
+    margin-left: 3px !important;
+  }
+
+  .header h1 {
+    flex: 1;
+    font-size: 0.9rem; /* Giảm từ 1.1rem xuống 0.9rem */
+    text-align: center;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .inputContainer {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 100px; /* Giảm từ 120px xuống 100px */
+    max-width: 130px; /* Giảm từ 150px xuống 130px */
+  }
+
+  .inputContainer input {
+    width: 100%;
+    padding: 6px 8px; /* Giảm từ 8px 10px xuống 6px 8px */
+    font-size: 13px; /* Giảm từ 14px xuống 13px */
+    border-radius: 15px;
+  }
+
+  /* ========== NAVIGATION - COMPACT ========== */
+  .mainNav {
+    position: static;
+    top: 50px; /* Thay đổi từ 80px thành 50px */
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: #34495e;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+
+  .mainNav ul {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mainNav li {
+    flex: 1;
+  }
+
+  .mainNav a {
+    display: block;
+    padding: 6px 6px; /* Giảm từ 12px 8px xuống 10px 6px */
+    text-align: center;
+    font-size: 12px; /* Giảm từ 14px xuống 12px */
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ========== MAIN CONTENT - ADJUSTED ========== */
+  main,
+  .container {
+    margin-top: 90px; /* Giảm từ 130px xuống 90px */
+    padding: 10px 8px; /* Giảm padding */
+  }
+
+  .main-container {
+    height: auto; /* Thay đổi từ 130px thành 90px */
+    margin-top: 0;
+    overflow-y: auto; /* Đảm bảo có thể cuộn */
+  }
+
+  /* ========== FUNCTION TABS - COMPACT ========== */
+  .function-tabs {
+    position: relative;
+    top: 90px; /* Thay đổi từ 130px thành 90px */
+    z-index: 900;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .tabs-nav {
+    display: flex;
+    overflow-x: auto;
+    padding: 0 8px;
+    gap: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tabs-nav::-webkit-scrollbar {
+    height: 2px;
+  }
+
+  .tabs-nav::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 2px;
+  }
+
+  .tabs-nav button {
+    flex: 0 0 auto;
+    padding: 6px 12px; /* Giảm từ 12px 16px xuống 10px 12px */
+    font-size: 12px; /* Giảm từ 13px xuống 12px */
+    white-space: nowrap;
+    min-width: 80px; /* Giảm từ 100px xuống 80px */
+    border-bottom: 2px solid transparent;
+  }
+
+  .tabs-nav button.active {
+    border-bottom-color: #3498db;
+    background-color: #f8f9fa;
+  }
+
+  /* ========== CONTROLS BAR ========== */
+  .controls-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 10px 8px; /* Giảm padding */
+  }
+
+  .controls-bar input,
+  .controls-bar select,
+  .controls-bar button {
+    width: 100%;
+    font-size: 13px; /* Giảm từ 14px xuống 13px */
+    padding: 8px; /* Giảm từ 10px xuống 8px */
+  }
+
+  .controls-bar button:nth-last-child(-n+2) {
+    grid-column: span 2;
+  }
+
+  .search-input {
+    max-width: none;
+    min-width: auto;
+  }
+
+  .controls-bar button {
+    background: #3498db;
+    color: white;
+    font-weight: 600;
+    border: none;
+    margin: 3px 0; /* Giảm từ 5px xuống 3px */
+    border-radius: 6px;
+    min-height: 40px; /* Đặt chiều cao tối thiểu */
+  }
+
+  .controls-bar button:active {
+    transform: scale(0.98);
+  }
+
+  /* ========== STATS BAR ========== */
+  .stats-bar {
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 12px; /* Giảm padding */
+    font-size: 13px; /* Giảm từ 14px xuống 13px */
+  }
+
+  .stat-item {
+    justify-content: space-between;
+    padding: 6px 0; /* Giảm từ 8px xuống 6px */
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .stat-item:last-child {
+    border-bottom: none;
+  }
+
+  .stat-number {
+    font-size: 15px; /* Giảm từ 16px xuống 15px */
+    font-weight: bold;
+  }
+
+  /* ========== TABLE - SCROLLABLE ========== */
+  .excel-table-wrapper {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    max-height: none; /* Bỏ giới hạn chiều cao */
+    border: 1px solid #ddd;
+  }
+
+  .excel-table {
+    min-width: 600px;
+    font-size: 11px; /* Giảm từ 12px xuống 11px */
+  }
+
+  .excel-table th,
+  .excel-table td {
+    padding: 8px 4px; /* Giảm padding */
+    min-width: 50px;
+  }
+
+  /* Optimize column widths for mobile */
+  .col-stt { width: 35px !important; min-width: 35px !important; }
+  .col-mssv { width: 75px !important; min-width: 75px !important; }
+  .col-name { width: 130px !important; min-width: 130px !important; }
+  .col-room { width: 55px !important; min-width: 55px !important; }
+  .col-floor { width: 45px !important; min-width: 45px !important; }
+
+  /* ========== CONTENT AREA - SCROLLABLE ========== */
+  .content-area {
+    overflow-y: auto !important;
+    flex: 1 !important;
+    height: auto !important;
+    margin-top: 0 !important;
+  }
+
+  .tab-content.active {
+    overflow-y: auto !important;
+    flex: 1 !important;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* ========== DASHBOARD CARDS ========== */
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+  }
+
+  .stat-card {
+    padding: 12px 8px; /* Giảm padding */
+    text-align: center;
+  }
+
+  .stat-card-number {
+    font-size: 1.6rem; /* Giảm từ 1.8rem xuống 1.6rem */
+  }
+
+  .stat-card-label {
+    font-size: 0.8rem; /* Giảm từ 0.85rem xuống 0.8rem */
+  }
+
+  /* ========== ROOM LIST ========== */
+  #roomList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    padding: 12px 8px;
+  }
+
+  .room-card {
+    padding: 12px 8px; /* Giảm padding */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white;
+    border: 1px solid #e9ecef;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    min-height: 100px; /* Giảm từ 120px xuống 100px */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .room-card:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  .room-card h3 {
+    font-size: 14px; /* Giảm từ 16px xuống 14px */
+    margin: 0 0 6px 0;
+    color: #2c3e50;
+    text-align: center;
+  }
+
+  .room-card p {
+    font-size: 12px; /* Giảm từ 13px xuống 12px */
+    color: #6c757d;
+    margin: 3px 0;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ========== FORM IMPROVEMENTS ========== */
+  fieldset {
+    margin-bottom: 15px; /* Giảm từ 20px xuống 15px */
+    padding: 12px; /* Giảm từ 15px xuống 12px */
+    border-radius: 10px;
+  }
+
+  fieldset legend {
+    font-size: 15px; /* Giảm từ 16px xuống 15px */
+    padding: 0 8px;
+    font-weight: 600;
+  }
+
+  .table-container {
+    margin-bottom: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .table-container table {
+    font-size: 12px; /* Giảm từ 13px xuống 12px */
+  }
+
+  .table-container th,
+  .table-container td {
+    padding: 10px 6px; /* Giảm từ 12px 8px xuống 10px 6px */
+  }
+
+  /* Touch-friendly radio buttons */
+  label {
+    padding: 12px; /* Giảm từ 15px xuống 12px */
+    margin: 6px 0; /* Giảm từ 8px xuống 6px */
+    border-radius: 10px;
+    font-size: 15px; /* Giảm từ 16px xuống 15px */
+    min-height: 45px; /* Giảm từ 52px xuống 45px */
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  input[type="radio"] {
+    width: 20px; /* Giảm từ 22px xuống 20px */
+    height: 20px;
+    margin-right: 12px; /* Giảm từ 15px xuống 12px */
+  }
+
+  /* ========== BUTTONS ========== */
+  .btn-view,
+  .form-actions button {
+    min-height: 42px; /* Giảm từ 48px xuống 42px */
+    font-size: 15px; /* Giảm từ 16px xuống 15px */
+    padding: 10px 16px; /* Giảm từ 12px 20px xuống 10px 16px */
+    border-radius: 10px;
+    font-weight: 600;
+    width: 100%;
+    max-width: none;
+    margin: 8px 0; /* Giảm từ 10px xuống 8px */
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px; /* Giảm từ 12px xuống 10px */
+    margin-top: 20px; /* Giảm từ 25px xuống 20px */
+  }
+
+  /* ========== TEXTAREA ========== */
+  textarea {
+    min-height: 100px; /* Giảm từ 120px xuống 100px */
+    padding: 12px; /* Giảm từ 15px xuống 12px */
+    font-size: 15px; /* Giảm từ 16px xuống 15px */
+    border-radius: 10px;
+    resize: vertical;
+  }
+
+  /* ========== SCROLLBARS ========== */
+  .excel-table-wrapper::-webkit-scrollbar {
+    height: 4px; /* Giảm từ 6px xuống 4px */
+  }
+
+  .excel-table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  .excel-table-wrapper::-webkit-scrollbar-thumb {
+    background: #007bff;
+    border-radius: 2px;
+  }
+
+  /* ========== SCROLL HINT ========== */
+  .excel-table-wrapper::after {
+    content: "← Vuốt ngang để xem thêm →";
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+    margin-top: 3px;
+    padding: 2px;
+    background: rgba(0,123,255,0.1);
+    border-radius: 3px;
+  }
+
+  /* ========== LOADING & EMPTY STATES ========== */
+  .empty-state {
+    padding: 30px 15px; /* Giảm từ 40px 20px xuống 30px 15px */
+    font-size: 13px; /* Giảm từ 14px xuống 13px */
+  }
+
+  .loading {
+    padding: 25px 15px; /* Giảm từ 30px 20px xuống 25px 15px */
+    font-size: 13px;
+  }
+
+  /* ========== MEMBER LIST ========== */
+  .member-list .radio-option {
+    padding: 10px; /* Giảm từ 12px xuống 10px */
+    margin: 6px 0; /* Giảm từ 8px xuống 6px */
+    border-radius: 8px;
+  }
+
+  /* ========== EVALUATION GROUPS ========== */
+  .evaluation-group {
+    gap: 8px; /* Giảm từ 10px xuống 8px */
+  }
+
+  /* ========== SEARCH INPUT SPECIFIC ========== */
+  #searchInput {
+    padding: 10px 12px; /* Giảm từ 12px 15px xuống 10px 12px */
+    font-size: 15px; /* Giảm từ 16px xuống 15px */
+    border-radius: 20px;
+    border: 1px solid #ddd;
+    width: 100%;
+  }
+
+  #searchInput:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0,123,255,0.1); /* Giảm từ 3px xuống 2px */
+  }
+}
+
+/* ========== VERY SMALL SCREENS - ULTRA COMPACT ========== */
+@media screen and (max-width: 480px) {
+  
+  .header {
+    min-height: 40px; /* Giảm từ 60px xuống 40px */
+    padding: 4px 8px; /* Giảm từ 5px 10px xuống 4px 8px */
+  }
+
+  .header h1 {
+    font-size: 0.8rem; /* Giảm từ 0.9rem xuống 0.8rem */
+  }
+
+  .logo img {
+    width: 25px !important; /* Giảm từ 30px xuống 25px */
+    height: 25px !important;
+  }
+
+  .inputContainer {
+    min-width: 80px; /* Giảm từ 100px xuống 80px */
+    max-width: 100px; /* Giảm từ 120px xuống 100px */
+  }
+
+  .mainNav {
+    top: 40px; /* Thay đổi từ 70px thành 40px */
+  }
+
+  .mainNav a {
+    padding: 8px 4px; /* Giảm padding hơn nữa */
+    font-size: 11px; /* Giảm từ 12px xuống 11px */
+  }
+
+  main,
+  .container {
+    margin-top: 0; /* Giảm từ 115px xuống 80px */
+  }
+
+  .main-container {
+    height: calc(100vh - 80px);
+    margin-top: 140px;
+  }
+
+  .function-tabs {
+    top: 80px;
+  }
+
+  .tabs-nav button {
+    min-width: 70px; /* Giảm từ 80px xuống 70px */
+    padding: 8px 10px; /* Giảm từ 10px 12px xuống 8px 10px */
+    font-size: 11px; /* Giảm từ 12px xuống 11px */
+  }
+
+  #roomList {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+    padding: 10px 6px;
+  }
+
+  .room-card {
+    padding: 10px 6px;
+    min-height: 80px; /* Giảm từ 100px xuống 80px */
+  }
+
+  .room-card h3 {
+    font-size: 13px; /* Giảm từ 15px xuống 13px */
+  }
+
+  .room-card p {
+    font-size: 11px; /* Giảm từ 12px xuống 11px */
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .stat-card {
+    padding: 10px 6px; /* Giảm từ 12px 8px xuống 10px 6px */
+  }
+
+  .stat-card-number {
+    font-size: 1.4rem; /* Giảm từ 1.5rem xuống 1.4rem */
+  }
+
+  fieldset {
+    padding: 10px; /* Giảm từ 12px xuống 10px */
+  }
+
+  fieldset legend {
+    font-size: 14px; /* Giảm từ 15px xuống 14px */
+  }
+}
+
+/* ========== LANDSCAPE ORIENTATION - ULTRA COMPACT ========== */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  
+  .header {
+    min-height: 40px; /* Giảm từ 60px xuống 40px */
+    padding: 4px 12px; /* Giảm từ 5px 15px xuống 4px 12px */
+  }
+
+  .header h1 {
+    font-size: 0.85rem; /* Giảm từ 1rem xuống 0.85rem */
+  }
+
+  .logo img {
+    width: 28px !important; /* Giảm từ 35px xuống 28px */
+    height: 28px !important;
+  }
+
+  .mainNav {
+    top: 40px; /* Thay đổi từ 60px thành 40px */
+  }
+
+  .mainNav a {
+    padding: 6px 10px; /* Giảm từ 8px 12px xuống 6px 10px */
+  }
+
+  main,
+  .container {
+    margin-top: 80px; /* Giảm từ 105px xuống 80px */
+  }
+
+  .main-container {
+    height: calc(100vh - 80px);
+    margin-top: 140px;
+  }
+
+  .function-tabs {
+    top: 80px;
+  }
+
+  .tabs-nav button {
+    padding: 6px 10px; /* Giảm từ 8px 12px xuống 6px 10px */
+  }
+}
+
+/* ========== HIGH DPI SCREENS ========== */
+@media screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  
+  .excel-table {
+    font-size: 12px; /* Giảm từ 13px xuống 12px */
+  }
+
+  .tabs-nav button {
+    font-size: 13px; /* Giảm từ 14px xuống 13px */
+  }
+
+  .room-card h3 {
+    font-size: 15px; /* Giảm từ 17px xuống 15px */
+  }
+
+  .room-card p {
+    font-size: 13px; /* Giảm từ 14px xuống 13px */
+  }
+}
+
+/* ========== ACCESSIBILITY ========== */
+@media (prefers-reduced-motion: reduce) {
+  .room-card,
+  .tabs-nav button,
+  .controls-bar button,
+  label {
+    transition: none;
+  }
+
+  .room-card:active {
+    transform: none;
+  }
+
+  .controls-bar button:active {
+    transform: none;
+  }
+}
+
+/* ========== FOCUS IMPROVEMENTS ========== */
+@media screen and (max-width: 768px) {
+  
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid #007bff; /* Giảm từ 3px xuống 2px */
+    outline-offset: 1px; /* Giảm từ 2px xuống 1px */
+  }
+
+  .mainNav a:focus {
+    outline: 2px solid #f39c12;
+    outline-offset: -2px;
+  }
+}
+
+/* ========== SCROLL FIX ========== */
+@media screen and (max-width: 768px) {
+  /* Đảm bảo tất cả content có thể cuộn */
+  html, body {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .main-container {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .content-area {
+    overflow-y: auto !important;
+    flex: 1 !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .tab-content.active {
+    overflow-y: auto !important;
+    flex: 1 !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* Wrapper chỉ chịu trách nhiệm cuộn ngang */
+  .excel-table-wrapper {
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+    max-height: none !important;
+    height: auto !important;
+  }
+    .function-tabs {
+    position: static;
+    backdrop-filter: blur(10px); /* Thêm hiệu ứng blur */
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  /* Thêm padding cho các control bar để không bị che */
+  .controls-bar {
+    padding-top: 15px; /* Tăng padding-top */
+  }
+}
+
+/* Smooth transition khi chuyển tabs */
+.tab-content {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.tab-content:not(.active) {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tab-content.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    display: block;
+  }
+
+  .table-container table {
+    min-width: 600px; /* đảm bảo có chiều rộng để cuộn */
+    display: block;
+  }
+}
+.table-container::after { 
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  color: #666;
+  margin-top: 3px;
+  padding: 2px;
+  background: rgba(0,123,255,0.1);
+  border-radius: 3px;
+} 
+
+html, body, input, button, select, textarea, th, td, legend {
+  font-family: 'Roboto', Arial, sans-serif !important;
+  font-size: 1rem;
+}
