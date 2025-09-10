@@ -311,8 +311,6 @@ class NotesManager {
                 }
             });
 
-            container.innerHTML = listHtml;
-
         } catch (err) {
             console.error("Lỗi tải ghi chú:", err);
         }

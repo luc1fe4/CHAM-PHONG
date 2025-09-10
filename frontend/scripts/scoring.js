@@ -253,9 +253,7 @@
       }
     });
 
-    const score_55 = (max_score > 0) 
-    ? Math.round((actual_score / max_score) * 55) 
-    : 0;
+    const score_55 = (max_score > 0) ? Math.round((actual_score / max_score) * 55 * 100) / 100 : 0;
 
     const result = {
       actual_score: Math.round(actual_score * 100) / 100,

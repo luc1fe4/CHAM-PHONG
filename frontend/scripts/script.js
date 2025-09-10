@@ -211,7 +211,7 @@ function loadRoomForm(roomData) {
             await saveToFirestore(payload);
             
 
-            alert("Đã lưu chấm phòng thành công! Số điểm: " + result.score_55);
+            alert("Đã lưu chấm phòng thành công! Số điểm: " + Math.round(result.score_55));
             const container = document.querySelector('.container');
             container.innerHTML = `<div id="roomList"></div>`;
             loadRoomList();
