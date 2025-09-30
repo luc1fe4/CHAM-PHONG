@@ -100,8 +100,11 @@ async function loadMemberData() {
     });
     
     students = flattenedStudents;
+    window.students = flattenedStudents; // Export to global
     currentData = [...flattenedStudents];
+    window.currentData = [...flattenedStudents]; // Export to global  
     filteredData = [...flattenedStudents];
+    window.filteredData = [...flattenedStudents]; // Export to global
     
     console.log(`✅ Loaded ${flattenedStudents.length} students from ${data.length} rooms`);
     
@@ -154,40 +157,72 @@ function renderBasicStudentTable(data) {
   });
 }
 
+// Xóa toàn bộ nội dung bảng để tránh xung đột giữa các tab
+function clearStudentTable() {
+    const thead = document.querySelector(".excel-table thead tr");
+    const tbody = document.getElementById("studentTableBody");
+    if (thead) thead.innerHTML = "";
+    if (tbody) tbody.innerHTML = "";
+}
+window.clearStudentTable = clearStudentTable; // export global
+
+
 // ===================== TAB MANAGEMENT =====================
 function setupTabs() {
   const tabButtons = document.querySelectorAll(".tabs-nav button");
 
   if (tabButtons.length > 0) {
     tabButtons.forEach(btn => {
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", async () => {
         tabButtons.forEach(b => b && b.classList.remove("active"));
         btn.classList.add("active");
 
         const tab = btn.getAttribute("data-tab");
         const container = document.querySelector(".dashboard-content");
-        if (!container) {
-          console.error("Không tìm thấy .dashboard-content trong DOM");
-          return;
-        }
+        const excelContainer = document.querySelector(".excel-container");
+        const weeklyStatsContainer = document.getElementById("weekly-stats-container");
 
         if (tab === "notes") {
-            if (typeof notesManager !== 'undefined') {
-                notesManager.loadNotesTab(container);
-                // Nếu không có ghi chú, xóa nội dung cho gọn
-                if (container.innerText.includes("Chưa có ghi chú")) {
-                container.innerHTML = "";
-                }
-            } else {
-                container.innerHTML = ""; // bỏ hẳn khi không có module
+          // Hiện excel-container, ẩn weekly stats
+          excelContainer.style.display = "block";
+          weeklyStatsContainer.style.display = "none";
+          container.innerHTML = ""; // Xóa nội dung container
+          await loadMemberData(); // Tải lại dữ liệu sinh viên
+
+          if (typeof notesManager !== "undefined") {
+            notesManager.loadNotesTab(container);
+            if (container.innerText.includes("Chưa có ghi chú")) {
+              container.innerHTML = "";
             }
+          } else {
+            container.innerHTML = "";
+          }
         }
-
-
-        else if (tab === "weeklyStats") loadWeeklyStats(container);
-        else if (tab === "monthlyStats") loadMonthlyStats(container);
-        else if (tab === "violations") loadViolations(container);
-        else if (tab === "ranking") loadRanking(container);
+        else if (tab === "weeklyStats") {
+          // Hiện weekly stats, ẩn excel-container
+          excelContainer.style.display = "none";
+          container.innerHTML = "";
+          weeklyStatsContainer.style.display = "block";
+          loadWeeklyStats(weeklyStatsContainer);
+        }
+        else if (tab === "monthlyStats") {
+            excelContainer.style.display = "none";
+            weeklyStatsContainer.style.display = "none";
+            container.innerHTML = "";
+            loadMonthlyRoomStats(container);
+        }
+        else if (tab === "violations") {
+        excelContainer.style.display = "none";
+        weeklyStatsContainer.style.display = "none";
+        container.innerHTML = "";
+        loadViolationsQuery(container);
+        }
+        else if (tab === "detailedAnalysis") {
+            excelContainer.style.display = "none";
+            weeklyStatsContainer.style.display = "none";
+            container.innerHTML = "";
+            loadDetailedAnalysis(container);
+        }
       });
     });
 
@@ -196,21 +231,43 @@ function setupTabs() {
   }
 }
 
+
 // Placeholder functions for other tabs
 function loadWeeklyStats(container) {
-  container.innerHTML = "<h2>📊 Thống kê tuần</h2><p>Chức năng đang phát triển...</p>";
+  // Kiểm tra xem weeklyStats module đã load chưa
+  if (typeof weeklyStats !== 'undefined' && weeklyStats.loadWeeklyStatsTab) {
+    weeklyStats.loadWeeklyStatsTab(container);
+  } else {
+    container.innerHTML = "<h2>📊 Thống kê tuần</h2><p>Đang tải module...</p>";
+    console.warn("WeeklyStats module chưa sẵn sàng");
+  }
 }
 
-function loadMonthlyStats(container) {
-  container.innerHTML = "<h2>📅 Thống kê tháng</h2><p>Chức năng đang phát triển...</p>";
+function loadMonthlyRoomStats(container) {
+    if (typeof monthlyRoomStats !== 'undefined' && monthlyRoomStats.loadMonthlyRoomStatsTab) {
+        monthlyRoomStats.loadMonthlyRoomStatsTab(container);
+    } else {
+        container.innerHTML = "<h2>📅 Thống kê tháng theo phòng</h2><p>Đang tải module...</p>";
+        console.warn("MonthlyRoomStats module chưa sẵn sàng");
+    }
 }
 
 function loadViolations(container) {
-  container.innerHTML = "<h2>⚠️ Truy vấn điểm trừ</h2><p>Chức năng đang phát triển...</p>";
+  if (typeof violationsQuery !== 'undefined' && violationsQuery.loadViolationsQueryTab) {
+    violationsQuery.loadViolationsQueryTab(container);
+  } else {
+    container.innerHTML = "<h2>⚠️ Truy vấn điểm trừ</h2><p>Đang tải module...</p>";
+    console.warn("ViolationsQuery module chưa sẵn sàng");
+  }
 }
-
-function loadRanking(container) {
-  container.innerHTML = "<h2>🏆 Xếp hạng</h2><p>Chức năng đang phát triển...</p>";
+// Thêm function này vào phần placeholder functions
+function loadDetailedAnalysis(container) {
+    if (typeof detailedMonthlyAnalysis !== 'undefined' && detailedMonthlyAnalysis.loadDetailedAnalysisTab) {
+        detailedMonthlyAnalysis.loadDetailedAnalysisTab(container);
+    } else {
+        container.innerHTML = "<h2>📋 Thống kê chi tiết tháng</h2><p>Đang tải module...</p>";
+        console.warn("DetailedMonthlyAnalysis module chưa sẵn sàng");
+    }
 }
 
 // ===================== STATISTICS MANAGEMENT =====================
@@ -424,7 +481,7 @@ setInterval(() => {
     if (typeof notesManager !== 'undefined') {
         refreshNotes();
     }
-},  600000); // 3 giây
+},  6000000); // 3 giây
 
 // ===================== GLOBAL FUNCTIONS =====================
 // Expose functions to global scope for compatibility
@@ -440,3 +497,5 @@ window.refreshNotes = refreshNotes;
 window.currentData = currentData;
 window.filteredData = filteredData;
 window.students = students;
+
+window.loadMonthlyRoomStats = loadMonthlyRoomStats;

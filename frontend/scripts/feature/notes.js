@@ -20,7 +20,7 @@ class NotesManager {
             console.log("🔄 Đang tải dữ liệu ghi chú từ Firestore...");
 
             // Lấy dữ liệu ghi chú từ Firestore
-            const snapshot = await db.collection("cham_phong").orderBy("createdAt").get();
+            const snapshot = await db.collection("cham_phong_9").orderBy("createdAt").get();
 
             // Tạo object lưu trữ ghi chú theo room-name-date
             this.notesByRoomNameDate = {};
@@ -243,6 +243,11 @@ class NotesManager {
 
     // Fallback render function (original)
     renderStudentTable(data) {
+        if (!data || data.length === 0) {
+            console.warn("Không có dữ liệu để render");
+            return;
+        }
+        
         const tbody = document.getElementById("studentTableBody");
         const thead = document.querySelector("#studentTableBody").closest('table').querySelector('thead tr');
 
@@ -287,7 +292,7 @@ class NotesManager {
                 return;
             }
 
-            const snapshot = await db.collection("cham_phong").orderBy("createdAt", "desc").limit(50).get();
+            const snapshot = await db.collection("cham_phong_9").orderBy("createdAt", "desc").limit(50).get();
 
             if (snapshot.empty) {
                 container.innerHTML = "";
@@ -324,7 +329,7 @@ class NotesManager {
                 return;
             }
 
-            const snapshot = await db.collection("cham_phong").orderBy("createdAt").get();
+            const snapshot = await db.collection("cham_phong_9").orderBy("createdAt").get();
             const notesByRoomNameDate = {};
             const allDates = new Set();
 
@@ -564,7 +569,7 @@ class NotesManager {
     async debugFirestoreData() {
         try {
             console.log("🔍 Debug: Kiểm tra dữ liệu Firestore...");
-            const snapshot = await db.collection("cham_phong").limit(5).get();
+            const snapshot = await db.collection("cham_phong_9").limit(5).get();
 
             snapshot.forEach(doc => {
                 console.log("📄 Document:", doc.id);

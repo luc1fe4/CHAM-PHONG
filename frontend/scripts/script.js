@@ -16,6 +16,740 @@ document.addEventListener('DOMContentLoaded', () => {
   loadRoomList();
 });
 
+// ================================================================
+// THÊM VÀO ĐẦU FILE SCRIPT.JS - SAU PHẦN FIREBASE CONFIG
+// ================================================================
+
+// CSS cho submit loading và result popup
+const submitLoadingCSS = `
+.submit-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(3px);
+  animation: fadeIn 0.3s ease;
+}
+
+.submit-loading-content {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease;
+  min-width: 300px;
+  max-width: 90%;
+}
+
+.submit-spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px auto;
+}
+
+.submit-loading-text {
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.submit-loading-detail {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.submit-progress-bar {
+  width: 100%;
+  height: 6px;
+  background: #e9ecef;
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.submit-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+  animation: progressPulse 2s ease-in-out infinite;
+}
+
+.submit-step-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.submit-step {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #dee2e6;
+  transition: all 0.3s ease;
+}
+
+.submit-step.active {
+  background: #007bff;
+  animation: pulse 1s infinite;
+}
+
+.submit-step.completed {
+  background: #28a745;
+}
+
+/* Result Popup CSS */
+.result-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+.result-popup {
+  background: white;
+  border-radius: 20px;
+  max-width: 90%;
+  width: 400px;
+  padding: 0;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s ease;
+  overflow: hidden;
+}
+
+.result-header {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 25px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.result-header::before {
+  content: '';
+  font-size: 40px;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 2s infinite;
+}
+
+.result-header h2 {
+  margin: 15px 0 5px 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.result-header p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 16px;
+}
+
+.result-content {
+  padding: 30px;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.result-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.result-value {
+  font-weight: 700;
+  font-size: 16px;
+  color: #2c3e50;
+  text-align: right;
+  word-break: break-word;
+  max-width: 60%;
+}
+
+.score-display {
+  text-align: center;
+  margin: 20px 0;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9ff, #e3f2fd);
+  border-radius: 15px;
+  border: 2px solid #2196F3;
+}
+
+.score-number {
+  font-size: 36px;
+  font-weight: 900;
+  color: #2196F3;
+  margin-bottom: 5px;
+}
+
+.score-rating {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+  padding: 8px 16px;
+  border-radius: 25px;
+  display: inline-block;
+}
+
+.rating-excellent {
+  background: #d4edda;
+  color: #155724;
+}
+
+.rating-good {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.rating-average {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.rating-poor {
+  background: #f5c6cb;
+  color: #721c24;
+}
+
+.result-actions {
+  padding: 0 30px 30px 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.result-btn {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-back {
+  background: #6c757d;
+  color: white;
+}
+
+.btn-back:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+.btn-continue {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+}
+
+.btn-continue:hover {
+  background: linear-gradient(135deg, #0056b3, #004085);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes progressPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-10px);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 480px) {
+  .result-popup, .submit-loading-content {
+    max-width: 95%;
+    margin: 10px;
+  }
+  
+  .result-header {
+    padding: 20px;
+  }
+  
+  .result-header h2 {
+    font-size: 20px;
+  }
+  
+  .result-content {
+    padding: 20px;
+  }
+  
+  .result-actions {
+    padding: 0 20px 20px 20px;
+    flex-direction: column;
+  }
+  
+  .score-number {
+    font-size: 28px;
+  }
+}
+`;
+
+// Thêm CSS vào document
+function addSubmitLoadingCSS() {
+  if (!document.querySelector('#submit-loading-styles')) {
+    const styleElement = document.createElement('style');
+    styleElement.id = 'submit-loading-styles';
+    styleElement.textContent = submitLoadingCSS;
+    document.head.appendChild(styleElement);
+  }
+}
+
+// Function hiển thị loading khi submit
+function showSubmitLoading() {
+  // Thêm CSS
+  addSubmitLoadingCSS();
+  
+  // Xóa loading cũ nếu có
+  const existingLoading = document.querySelector('.submit-loading-overlay');
+  if (existingLoading) {
+    existingLoading.remove();
+  }
+
+  const overlay = document.createElement('div');
+  overlay.className = 'submit-loading-overlay';
+  
+  overlay.innerHTML = `
+    <div class="submit-loading-content">
+      <div class="submit-spinner"></div>
+      <div class="submit-loading-text" id="submitLoadingText">Đang xử lý...</div>
+      <div class="submit-loading-detail" id="submitLoadingDetail">Vui lòng chờ trong giây lát</div>
+      
+      <div class="submit-progress-bar">
+        <div class="submit-progress-fill" id="submitProgressFill" style="width: 0%"></div>
+      </div>
+      
+      <div class="submit-step-indicator">
+        <div class="submit-step" id="step1"></div>
+        <div class="submit-step" id="step2"></div>
+        <div class="submit-step" id="step3"></div>
+        <div class="submit-step" id="step4"></div>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+
+  // Haptic feedback
+  if (navigator.vibrate) {
+    navigator.vibrate(50);
+  }
+
+  return {
+    updateProgress: (step, text, detail) => {
+      const loadingText = overlay.querySelector('#submitLoadingText');
+      const loadingDetail = overlay.querySelector('#submitLoadingDetail');
+      const progressFill = overlay.querySelector('#submitProgressFill');
+      
+      if (loadingText) loadingText.textContent = text;
+      if (loadingDetail) loadingDetail.textContent = detail;
+      if (progressFill) progressFill.style.width = `${(step / 4) * 100}%`;
+      
+      // Cập nhật step indicators
+      for (let i = 1; i <= 4; i++) {
+        const stepEl = overlay.querySelector(`#step${i}`);
+        if (stepEl) {
+          stepEl.classList.remove('active', 'completed');
+          if (i < step) {
+            stepEl.classList.add('completed');
+          } else if (i === step) {
+            stepEl.classList.add('active');
+          }
+        }
+      }
+    },
+    hide: () => {
+      if (overlay && overlay.parentNode) {
+        overlay.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => {
+          if (overlay.parentNode) {
+            overlay.remove();
+            document.body.style.overflow = '';
+          }
+        }, 300);
+      }
+    }
+  };
+}
+
+// Function delay với promise
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Function hiển thị popup kết quả
+function showResultPopup(roomNumber, nguoiTruc, score, khongCoNguoiTruc = false) {
+  // Thêm CSS
+  addSubmitLoadingCSS();
+  
+  // Xóa popup cũ nếu có
+  const existingPopup = document.querySelector('.result-popup-overlay');
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+
+  // Tính toán rating
+  const percentage = (score / 55) * 100;
+  let rating = '';
+  let ratingClass = '';
+
+  // Tạo popup
+  const overlay = document.createElement('div');
+  overlay.className = 'result-popup-overlay';
+  
+  overlay.innerHTML = `
+    <div class="result-popup">
+      <div class="result-header">
+        <h2>Kết quả đã được lưu thành công</p>
+      </div>
+      
+      <div class="result-content">
+        <div class="result-item">
+          <div class="result-label">
+            Số phòng:
+          </div>
+          <div class="result-value">${roomNumber}</div>
+        </div>
+        
+        <div class="result-item">
+          <div class="result-label">
+            Người trực:
+          </div>
+          <div class="result-value">
+            ${khongCoNguoiTruc ? 'Không có người trực' : nguoiTruc}
+          </div>
+        </div>
+        
+        <div class="score-display">
+          <div class="score-number">${Math.round(score * 100) / 100}</div>
+          <div style="color: #666; font-size: 14px;">/ 55 điểm</div>
+          <div class="score-rating ${ratingClass}">
+            ${rating} (${Math.round(percentage)}%)
+          </div>
+        </div>
+      </div>
+      
+      <div class="result-actions">
+        <button class="result-btn btn-back" id="backToListBtn">
+          ← Quay lại danh sách
+        </button>
+        <button class="result-btn btn-continue" id="continueBtn">
+          Tiếp tục ở đây ↻
+        </button>
+      </div>
+    </div>
+  `;
+
+  // Thêm popup vào document
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+
+  // Haptic feedback
+  if (navigator.vibrate) {
+    navigator.vibrate([100, 50, 100, 50, 200]);
+  }
+
+  // Xử lý sự kiện nút
+  const backBtn = overlay.querySelector('#backToListBtn');
+  const continueBtn = overlay.querySelector('#continueBtn');
+
+  backBtn.addEventListener('click', () => {
+    // Haptic feedback
+    if (navigator.vibrate) {
+      navigator.vibrate(30);
+    }
+    
+    // Đóng popup
+    closeResultPopup();
+    
+    // Quay lại danh sách phòng
+    const container = document.querySelector('.container');
+    container.innerHTML = `<div id="roomList"></div>`;
+    loadRoomList();
+  });
+
+  continueBtn.addEventListener('click', () => {
+    // Haptic feedback
+    if (navigator.vibrate) {
+      navigator.vibrate(30);
+    }
+    
+    // Chỉ đóng popup, giữ nguyên form
+    closeResultPopup();
+  });
+
+  // Đóng popup khi click overlay
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closeResultPopup();
+    }
+  });
+}
+
+function closeResultPopup() {
+  const overlay = document.querySelector('.result-popup-overlay');
+  if (overlay) {
+    overlay.style.animation = 'fadeOut 0.3s ease';
+    setTimeout(() => {
+      overlay.remove();
+      document.body.style.overflow = '';
+    }, 300);
+  }
+}
+
+// Function hiển thị popup lỗi
+function showErrorPopup(roomNumber, errorMessage) {
+  // Thêm CSS
+  addSubmitLoadingCSS();
+  
+  const overlay = document.createElement('div');
+  overlay.className = 'result-popup-overlay';
+  
+  overlay.innerHTML = `
+    <div class="result-popup">
+      <div class="result-header" style="background: linear-gradient(135deg, #dc3545, #c82333);">
+        <h2>❌ Có lỗi xảy ra!</h2>
+        <p>Không thể lưu dữ liệu chấm phòng</p>
+      </div>
+      
+      <div class="result-content">
+        <div class="result-item">
+          <div class="result-label">
+            Phòng:
+          </div>
+          <div class="result-value">${roomNumber}</div>
+        </div>
+        
+        <div class="result-item">
+          <div class="result-label">
+            ⚠️ Lỗi:
+          </div>
+          <div class="result-value" style="color: #dc3545;">
+            ${errorMessage}
+          </div>
+        </div>
+        
+        <div style="background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 10px; padding: 15px; margin: 20px 0; color: #721c24;">
+          <strong>💡 Gợi ý:</strong><br>
+          • Kiểm tra kết nối internet<br>
+          • Thử lại sau vài giây<br>
+          • Liên hệ quản trị viên nếu lỗi tiếp tục
+        </div>
+      </div>
+      
+      <div class="result-actions">
+        <button class="result-btn btn-continue" id="retryBtn" style="background: linear-gradient(135deg, #28a745, #1e7e34);">
+          Thử lại
+        </button>
+        <button class="result-btn btn-back" id="errorBackBtn">
+          ← Quay lại
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+
+  // Haptic feedback cho lỗi
+  if (navigator.vibrate) {
+    navigator.vibrate([200, 100, 200]);
+  }
+
+  // Xử lý sự kiện nút
+  const retryBtn = overlay.querySelector('#retryBtn');
+  const backBtn = overlay.querySelector('#errorBackBtn');
+
+  retryBtn.addEventListener('click', () => {
+    overlay.remove();
+    document.body.style.overflow = '';
+    // Trigger submit lại
+    const form = document.querySelector('#roomForm');
+    if (form) {
+      const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
+      form.dispatchEvent(submitEvent);
+    }
+  });
+
+  backBtn.addEventListener('click', () => {
+    overlay.remove();
+    document.body.style.overflow = '';
+  });
+
+  // Đóng khi click overlay
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      overlay.remove();
+      document.body.style.overflow = '';
+    }
+  });
+}
+
+// Function xử lý submit form với loading
+async function handleFormSubmit(e, form, roomData) {
+  e.preventDefault();
+  
+  console.log('Form submitted');
+  
+  if (!validateRequiredFields(form)) return;
+
+  // Khởi tạo loading với các bước
+  const loadingControl = showSubmitLoading();
+
+  try {
+    // Bước 1: Kiểm tra dữ liệu
+    loadingControl.updateProgress(1, 'Đang kiểm tra dữ liệu...', 'Xác thực thông tin form');
+    await delay(800);
+
+    // Bước 2: Tính toán điểm số
+    loadingControl.updateProgress(2, 'Đang tính toán điểm số...', 'Phân tích kết quả chấm điểm');
+    await delay(600);
+    
+    const criteria_scores = collectCriteriaScores(form);
+    console.log('Criteria scores:', criteria_scores);
+
+    const result = calculateScore(criteria_scores);
+    console.log('Score result:', result);
+
+    // Bước 3: Chuẩn bị dữ liệu
+    loadingControl.updateProgress(3, 'Đang chuẩn bị dữ liệu...', 'Tạo payload và kiểm tra kết nối');
+    await delay(500);
+
+    const payload = createFirestorePayload(form, roomData, result);
+    console.log('Payload to save:', payload);
+
+    // Bổ sung ghi chú
+    const ghiChu = form.querySelector('#ghiChu')?.value || "";
+    payload.ghiChu = ghiChu;
+
+    // Bước 4: Lưu dữ liệu
+    loadingControl.updateProgress(4, 'Đang lưu dữ liệu...', 'Ghi vào cơ sở dữ liệu');
+    await delay(400);
+
+    await saveToFirestore(payload);
+    
+    // Hoàn thành - delay một chút để user thấy hoàn thành
+    loadingControl.updateProgress(4, 'Hoàn thành!', 'Dữ liệu đã được lưu thành công');
+    await delay(600);
+    
+    // Đóng loading
+    loadingControl.hide();
+
+    // Delay nhỏ trước khi hiển thị kết quả
+    await delay(200);
+
+    // Lấy thông tin người trực để hiển thị
+    const nguoiTrucValue = form.querySelector('input[name="nguoiTruc"]:checked')?.value || "";
+    const isKhongCoNguoiTruc = nguoiTrucValue === 'khong_co_nguoi_truc';
+    const nguoiTrucName = isKhongCoNguoiTruc ? "" : nguoiTrucValue;
+
+    // Hiển thị popup kết quả
+    showResultPopup(roomData.room, nguoiTrucName, result.score_55, isKhongCoNguoiTruc);
+    
+  } catch (error) {
+    console.error('Lỗi khi submit form:', error);
+    loadingControl.hide();
+    
+    // Delay nhỏ trước khi hiển thị lỗi
+    await delay(200);
+    
+    // Enhanced error message với popup
+    showErrorPopup(roomData.room, error.message);
+  }
+}
+
+// ================================================================
+// HƯỚNG DẪN SỬ DỤNG:
+// 1. Thêm toàn bộ code trên vào đầu file script.js (sau phần firebase config)
+// 2. Trong function loadRoomForm, tìm và thay thế dòng này:
+//    form.addEventListener('submit', async (e) => { ... });
+//    Bằng:
+//    form.addEventListener('submit', (e) => handleFormSubmit(e, form, roomData));
+// ================================================================
+
 function loadRoomList() {
   fetch('member.json')
     .then(res => res.json())
@@ -52,6 +786,77 @@ function renderRoomList(roomArray, container) {
     card.appendChild(title);
     card.appendChild(btn);
     container.appendChild(card);
+  });
+}
+
+// Thêm function mới để cập nhật hiển thị tên người trực
+function updatePersonalSectionsWithTrucName(container) {
+  const personalSections = [
+    'giuong', 'tu', 'keSach', 'ghe', 'mocTreoDo'
+  ];
+  
+  const nguoiTrucRadios = container.querySelectorAll('input[name="nguoiTruc"]');
+  
+  nguoiTrucRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      if (this.checked) {
+        const selectedValue = this.value;
+        
+        if (selectedValue === 'khong_co_nguoi_truc') {
+          // Nếu chọn "Không có người trực" - ẩn tên người trực
+          personalSections.forEach(section => {
+            const memberList = container.querySelector(`.member-list[data-section="${section}"]`);
+            if (memberList) {
+              const memberRows = memberList.querySelectorAll('.member-row');
+              memberRows.forEach(row => {
+                const trucIndicator = row.querySelector('.truc-indicator');
+                if (trucIndicator) {
+                  trucIndicator.remove();
+                }
+              });
+            }
+          });
+        } else {
+          // Tìm tên của người được chọn làm trực
+          const selectedName = selectedValue; // Giả sử value chính là tên
+          
+          personalSections.forEach(section => {
+            const memberList = container.querySelector(`.member-list[data-section="${section}"]`);
+            if (memberList) {
+              const memberRows = memberList.querySelectorAll('.member-row');
+              
+              memberRows.forEach(row => {
+                // Xóa indicator cũ (nếu có)
+                const oldIndicator = row.querySelector('.truc-indicator');
+                if (oldIndicator) {
+                  oldIndicator.remove();
+                }
+                
+                // Lấy tên thành viên từ strong tag
+                const memberNameEl = row.querySelector('strong');
+                if (memberNameEl && memberNameEl.textContent.trim() === selectedName) {
+                  // Thêm indicator cho người trực
+                  const trucIndicator = document.createElement('span');
+                  trucIndicator.className = 'truc-indicator';
+                  trucIndicator.textContent = ' (Người trực)';
+                  trucIndicator.style.cssText = `
+                    color: #dc3545;
+                    font-weight: bold;
+                    font-size: 12px;
+                    background: #fff5f5;
+                    padding: 2px 6px;
+                    border-radius: 4px;
+                    border: 1px solid #fecaca;
+                    margin-left: 8px;
+                  `;
+                  memberNameEl.appendChild(trucIndicator);
+                }
+              });
+            }
+          });
+        }
+      }
+    });
   });
 }
 
@@ -183,44 +988,9 @@ function loadRoomForm(roomData) {
       // ===== 4) Bắt sự kiện SUBMIT form để lưu Firestore + đẩy Sheet =====
       const form = container.querySelector('#roomForm');
       if (form) {
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          
-          console.log('Form submitted'); // Debug
-          
-          if (!validateRequiredFields(form)) return;
-
-          try {
-            // B1: Thu thập dữ liệu form -> criteria_scores
-            const criteria_scores = collectCriteriaScores(form);
-            console.log('Criteria scores:', criteria_scores); // Debug
-
-            // B2: Gọi hàm tính điểm
-            const result = calculateScore(criteria_scores);
-            console.log('Score result:', result); // Debug
-
-            // B3: Tạo payload với mapping đúng field name
-            const payload = createFirestorePayload(form, roomData, result);
-            console.log('Payload to save:', payload); // Debug
-
-            // 🔑 Bổ sung ghi chú
-            const ghiChu = form.querySelector('#ghiChu')?.value || "";
-            payload.ghiChu = ghiChu;
-
-            // B4: Lưu vào Firestore
-            await saveToFirestore(payload);
-            
-
-            alert("Đã lưu chấm phòng thành công! Số điểm: " + Math.round(result.score_55));
-            const container = document.querySelector('.container');
-            container.innerHTML = `<div id="roomList"></div>`;
-            loadRoomList();
-          } catch (error) {
-            console.error('Lỗi khi submit form:', error);
-            alert('Có lỗi xảy ra: ' + error.message);
-          }
-        });
+        form.addEventListener('submit', (e) => handleFormSubmit(e, form, roomData));
       }
+
 
       // ===== 5) Nút quay lại =====
       const backBtn = container.querySelector('#backBtn');
@@ -230,6 +1000,137 @@ function loadRoomForm(roomData) {
           loadRoomList();
         });
       }
+
+      // ===== THÊM MỚI: Cập nhật hiển thị tên người trực và tự động tick "Đạt" cho khu vực cá nhân =====
+      const personalSections = ['giuong', 'tu', 'keSach', 'ghe', 'mocTreoDo'];
+      const nguoiTrucRadios = container.querySelectorAll('input[name="nguoiTruc"]');
+      nguoiTrucRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.checked && this.value !== 'khong_co_nguoi_truc') {
+            const selectedName = this.value;
+            // Tự động tick "Đạt" cho các khu vực cá nhân của người trực
+            personalSections.forEach(section => {
+              const radioDat = container.querySelector(`input[type="radio"][name="${section}_${selectedName}"][value="Đạt"]`);
+              if (radioDat) radioDat.checked = true;
+            });
+            // Hiển thị nhãn "Người trực" ở các khu vực cá nhân
+            personalSections.forEach(section => {
+              const memberList = container.querySelector(`.member-list[data-section="${section}"]`);
+              if (memberList) {
+                const memberRows = memberList.querySelectorAll('.member-row');
+                memberRows.forEach(row => {
+                  // Xóa nhãn cũ nếu có
+                  const oldIndicator = row.querySelector('.truc-indicator');
+                  if (oldIndicator) oldIndicator.remove();
+                  // Thêm nhãn mới cho người trực
+                  const memberNameEl = row.querySelector('strong');
+                  if (memberNameEl && memberNameEl.textContent.trim() === selectedName) {
+                    const trucIndicator = document.createElement('span');
+                    trucIndicator.className = 'truc-indicator';
+                    trucIndicator.textContent = ' (Người trực)';
+                    trucIndicator.style.cssText = `
+                      color: #dc3545;
+                      font-weight: bold;
+                      font-size: 12px;
+                      background: #fff5f5;
+                      padding: 2px 6px;
+                      border-radius: 4px;
+                      border: 1px solid #fecaca;
+                      margin-left: 8px;
+                    `;
+                    memberNameEl.appendChild(trucIndicator);
+                  }
+                });
+              }
+            });
+          } else if (this.checked && this.value === 'khong_co_nguoi_truc') {
+            // Nếu chọn "Không có người trực", xóa nhãn "Người trực" ở các khu vực cá nhân
+            personalSections.forEach(section => {
+              const memberList = container.querySelector(`.member-list[data-section="${section}"]`);
+              if (memberList) {
+                const memberRows = memberList.querySelectorAll('.member-row');
+                memberRows.forEach(row => {
+                  const trucIndicator = row.querySelector('.truc-indicator');
+                  if (trucIndicator) trucIndicator.remove();
+                });
+              }
+            });
+          }
+        });
+      });
+
+      // ===== THÊM MỚI: Hiển thị nhãn "Người trực" khi render form lần đầu nếu đã chọn =====
+      setTimeout(() => {
+        const checkedRadio = container.querySelector('input[name="nguoiTruc"]:checked');
+        if (checkedRadio && checkedRadio.value !== 'khong_co_nguoi_truc') {
+          const selectedName = checkedRadio.value;
+          personalSections.forEach(section => {
+            const memberList = container.querySelector(`.member-list[data-section="${section}"]`);
+            if (memberList) {
+              const memberRows = memberList.querySelectorAll('.member-row');
+              memberRows.forEach(row => {
+                const memberNameEl = row.querySelector('strong');
+                if (memberNameEl && memberNameEl.textContent.trim() === selectedName) {
+                  const trucIndicator = document.createElement('span');
+                  trucIndicator.className = 'truc-indicator';
+                  trucIndicator.textContent = ' (Người trực)';
+                  trucIndicator.style.cssText = `
+                    color: #dc3545;
+                    font-weight: bold;
+                    font-size: 12px;
+                    background: #fff5f5;
+                    padding: 2px 6px;
+                    border-radius: 4px;
+                    border: 1px solid #fecaca;
+                    margin-left: 8px;
+                  `;
+                  memberNameEl.appendChild(trucIndicator);
+                }
+              });
+            }
+          });
+        }
+      }, 0);
+
+      // ===== THÊM MỚI: Hiển thị họ tên người trực ở các khu vực cá nhân =====
+      const personalLabels = [
+        { selector: 'legend', keyword: 'Giường người trực' },
+        { selector: 'legend', keyword: 'Tủ người trực' },
+        { selector: 'legend', keyword: 'Kệ sách người trực' },
+        { selector: 'legend', keyword: 'Ghế người trực' },
+        { selector: 'legend', keyword: 'Móc treo đồ người trực' }
+      ];
+
+      function updatePersonalAreaLabels(trucName) {
+        personalLabels.forEach(item => {
+          const legends = container.querySelectorAll(item.selector);
+          legends.forEach(legend => {
+            if (legend.textContent.trim().startsWith(item.keyword)) {
+              // Nếu có tên người trực thì thêm vào, nếu không thì chỉ giữ nguyên
+              if (trucName && trucName !== 'khong_co_nguoi_truc') {
+                legend.innerHTML = `<span style="color:#007bff">${item.keyword}: ${trucName}</span> <span style="color:red">*</span>`;
+              } else {
+                legend.innerHTML = `${item.keyword} <span style="color:red">*</span>`;
+              }
+            }
+          });
+        });
+      }
+
+      // Sự kiện khi chọn người trực
+      nguoiTrucRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+          updatePersonalAreaLabels(this.value);
+        });
+      });
+
+      // Hiển thị tên người trực khi load form lần đầu nếu đã chọn
+      setTimeout(() => {
+        const checkedRadio = container.querySelector('input[name="nguoiTruc"]:checked');
+        if (checkedRadio) {
+          updatePersonalAreaLabels(checkedRadio.value);
+        }
+      }, 0);
     })
     .catch(err => {
       console.error('Lỗi khi load form chấm phòng:', err);
@@ -353,7 +1254,7 @@ function createFirestorePayload(form, roomData, result) {
 }
 
 
-/** Lưu Firestore (collection: "cham_phong") */
+/** Lưu Firestore (collection: "cham_phong_9_9") */
 async function saveToFirestore(payload) {
   if (!window._db) {
     throw new Error("Firebase chưa khởi tạo (_db not found).");
@@ -361,8 +1262,8 @@ async function saveToFirestore(payload) {
 
   try {
     console.log('Saving to Firestore:', payload); // Debug
-    
-    const docRef = await window._db.collection("cham_phong").add({
+
+    const docRef = await window._db.collection("cham_phong_9").add({
       ...payload,
       serverTimestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
@@ -597,3 +1498,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+

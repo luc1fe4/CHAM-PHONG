@@ -52,10 +52,11 @@
                 <button data-tab="weeklyStats">Thống kê tuần</button>
                 <button data-tab="monthlyStats">Thống kê tháng</button>
                 <button data-tab="violations">Truy vấn điểm trừ</button>
-                <button data-tab="ranking">Xếp hạng</button>
+                <button data-tab="detailedAnalysis">Thống kê chi tiết</button>
             </nav>
         </div>
         <div class="dashboard-content"></div>
+        <div id="weekly-stats-container" style="display:none;"></div>
         <div class="main-container">
 
             <!-- Content Area -->
@@ -195,10 +196,15 @@
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
     
     <!-- Custom Scripts -->
-    <script src="scripts/firebase-config.js"></script>
+    <script src="scripts/feature/notes.js"></script>
+    <script src="scripts/feature/weekly-stats.js"></script>
+    <script src="scripts/feature/monthly-stats.js"></script>
+    <script src="scripts/feature/violations-query.js"></script>
+    <script src="scripts/feature/detailed-monthly-analysis.js"></script>
     <script src="scripts/dashboard.js"></script>
-    <script src="scripts/notes.js"></script>
-    <script src="login.js"></script>
+    <script src="scripts/login.js"></script>
     <script src="scripts/touch-interactions.js"></script>
+    <script src="scripts/firebase-config.js"></script>
+
 </body>
 </html>
