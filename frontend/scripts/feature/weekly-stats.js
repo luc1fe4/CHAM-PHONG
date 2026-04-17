@@ -175,31 +175,35 @@ class WeeklyStats {
         const students = window.students || [];
         const weeks = Object.keys(this.weeklyData).sort((a,b)=>new Date(a)-new Date(b));
 
-        // Header
-        let header = `
-            <th>STT</th>
-            <th>MSSV</th>
-            <th>Họ và Tên</th>
-            <th>Phòng</th>
-            <th>Tầng</th>
+        // Header - Fixed columns
+        let headerFixed = `
+            <th class="fixed-col col-1">STT</th>
+            <th class="fixed-col col-2">MSSV</th>
+            <th class="fixed-col col-3">Họ và Tên</th>
+            <th class="fixed-col col-4">Phòng</th>
+            <th class="fixed-col col-5">Tầng</th>
         `;
+        
+        // Header - Scrollable columns
+        let headerScroll = '';
         weeks.forEach(w => {
-            header += `
-                <th style="background:#26c6da;color:#fff;font-weight:bold;font-size:13px;padding:6px 2px;text-align:center;">Điểm trực ${this.weekLabels[w]}</th>
-                <th style="background:#ef5350;color:#fff;font-weight:bold;font-size:13px;padding:6px 2px;text-align:center;">Điểm phạt ${this.weekLabels[w]}</th>
-                <th style="background:#7986cb;color:#fff;font-weight:bold;font-size:13px;padding:6px 2px;text-align:center;">Tổng ${this.weekLabels[w]}</th>
+            headerScroll += `
+                <th style="background:#26c6da;color:#fff;font-weight:bold;font-size:11px;padding:8px 4px;text-align:center;min-width:80px;white-space:normal;line-height:1.3;">Điểm trực<br>${this.weekLabels[w]}</th>
+                <th style="background:#ef5350;color:#fff;font-weight:bold;font-size:11px;padding:8px 4px;text-align:center;min-width:80px;white-space:normal;line-height:1.3;">Điểm phạt<br>${this.weekLabels[w]}</th>
+                <th style="background:#7986cb;color:#fff;font-weight:bold;font-size:11px;padding:8px 4px;text-align:center;min-width:80px;white-space:normal;line-height:1.3;">Tổng<br>${this.weekLabels[w]}</th>
             `;
         });
 
         // Body
         const rows = students.map((s, i) => {
-            let cols = `
-                <td>${i+1}</td>
-                <td>${s.mssv}</td>
-                <td>${s.name}</td>
-                <td>${s.room}</td>
-                <td>${s.floor}</td>
+            let colsFixed = `
+                <td class="fixed-col col-1">${i+1}</td>
+                <td class="fixed-col col-2">${s.mssv}</td>
+                <td class="fixed-col col-3" style="text-align:left;">${s.name}</td>
+                <td class="fixed-col col-4">${s.room}</td>
+                <td class="fixed-col col-5">${s.floor}</td>
             `;
+            let colsScroll = '';
             weeks.forEach(w => {
                 const rec = this.weeklyData[w][s.mssv];
                 if (rec) {
@@ -208,29 +212,119 @@ class WeeklyStats {
                         : rec.diemTruc.reduce((a,b)=>a+b,0) || 0;
                     const diemPhat = rec.diemPhat.reduce((a,b)=>a+b,0) || 0;
                     const tong = diemTruc - diemPhat;
-                    cols += `
+                    colsScroll += `
                         <td style="color:green;font-weight:bold;">${diemTruc.toFixed(1)}</td>
                         <td style="color:red;">${diemPhat}</td>
                         <td style="font-weight:bold;">${tong.toFixed(1)}</td>
                     `;
                 } else {
-                    cols += `<td>-</td><td>-</td><td>-</td>`;
+                    colsScroll += `<td>-</td><td>-</td><td>-</td>`;
                 }
             });
-            return `<tr>${cols}</tr>`;
+            return `<tr>${colsFixed}${colsScroll}</tr>`;
         }).join("");
 
         container.innerHTML = `
+            <style>
+                .excel-table-wrapper {
+                    position: relative;
+                    overflow: auto;
+                    max-height: 600px;
+                    max-width: 100%;
+                    border: 1px solid #ddd;
+                    margin-top: 10px;
+                }
+                .excel-table {
+                    border-collapse: separate;
+                    border-spacing: 0;
+                    width: auto;
+                    min-width: 100%;
+                    font-size: 13px;
+                    table-layout: fixed;
+                }
+                .excel-table thead {
+                    position: sticky;
+                    top: 0;
+                    z-index: 30;
+                    background: #f5f5f5;
+                }
+                .excel-table th {
+                    padding: 8px 4px;
+                    border: 1px solid #ddd;
+                    font-weight: bold;
+                    background: #f5f5f5;
+                    text-align: center;
+                }
+                .excel-table td {
+                    padding: 6px 4px;
+                    border: 1px solid #e0e0e0;
+                    text-align: center;
+                }
+                .excel-table .fixed-col {
+                    position: sticky;
+                    background: white;
+                    z-index: 20;
+                    box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+                }
+                .excel-table thead .fixed-col {
+                    z-index: 40;
+                    background: #f5f5f5;
+                }
+                /* Kích thước CỐ ĐỊNH - không thay đổi */
+                .excel-table .col-1 { 
+                    left: 0; 
+                    width: 50px; 
+                    min-width: 50px; 
+                    max-width: 50px; 
+                }
+                .excel-table .col-2 { 
+                    left: 50px; 
+                    width: 90px; 
+                    min-width: 90px; 
+                    max-width: 90px; 
+                }
+                .excel-table .col-3 { 
+                    left: 140px; 
+                    width: 150px; 
+                    min-width: 150px; 
+                    max-width: 150px; 
+                }
+                .excel-table .col-4 { 
+                    left: 290px; 
+                    width: 70px; 
+                    min-width: 70px; 
+                    max-width: 70px; 
+                }
+                .excel-table .col-5 { 
+                    left: 360px; 
+                    width: 60px; 
+                    min-width: 60px; 
+                    max-width: 60px; 
+                }
+                /* Các cột điểm tuần - có thể thêm vô hạn */
+                .excel-table th:not(.fixed-col),
+                .excel-table td:not(.fixed-col) {
+                    min-width: 80px;
+                    width: 80px;
+                }
+                .excel-table tbody tr:hover {
+                    background-color: #f9f9f9;
+                }
+                /* Đảm bảo các cột cố định không bị ảnh hưởng khi hover */
+                .excel-table tbody tr:hover .fixed-col {
+                    background-color: white;
+                }
+            </style>
             <h2>📊 Thống kê tuần</h2>
             <div class="excel-table-wrapper">
                 <table class="excel-table">
-                    <thead><tr>${header}</tr></thead>
+                    <thead><tr>${headerFixed}${headerScroll}</tr></thead>
                     <tbody>${rows}</tbody>
                 </table>
             </div>
             <div style="margin-top:8px;font-size:12px;color:#555;">
                 📌 Thống kê tuần: ${weeks.length} khoảng thời gian | ${students.length} sinh viên <br>
-                <em>Dữ liệu được tính từ form chấm điểm hằng ngày</em>
+                <em>Dữ liệu được tính từ form chấm điểm hằng ngày. Cuộn ngang/dọc để xem thêm.</em>
             </div>
         `;
     }

@@ -566,6 +566,15 @@
             {
                 "mssv": "2302018",
                 "name": "Nguyễn Trần Ngọc Ngọc"
+            },
+            {
+                "mssv": "2602032",
+                "name": "Huỳnh Thùy Mỵ"
+            },
+            
+            {
+                "mssv": "2602035",
+                "name": "Nguyễn Thanh Trà"
             }
         ]
     },
@@ -722,32 +731,6 @@
         ]
     },
     {
-        "room": "201",
-        "floor": 2,
-        "members": [
-            {
-                "mssv": "2602032",
-                "name": "Huỳnh Thùy Mỵ"
-            },
-            {
-                "mssv": "2602033",
-                "name": "Nguyễn Thị Ngọc Hồng"
-            },
-            {
-                "mssv": "2602035",
-                "name": "Nguyễn Thanh Trà"
-            },
-            {
-                "mssv": "2602060",
-                "name": "Nguyễn Thị Kim Hương"
-            },
-            {
-                "mssv": "2602061",
-                "name": "Lê Thị Anh Thư"
-            }
-        ]
-    },
-    {
         "room": "202",
         "floor": 2,
         "members": [
@@ -808,6 +791,14 @@
             {
                 "mssv": "2602051",
                 "name": "Trương Như Ý"
+            },
+            {
+                "mssv": "2602061",
+                "name": "Lê Thị Anh Thư"
+            },
+            {
+                "mssv": "2602062",
+                "name": "Nguyễn Hoài Thương"
             }
         ]
     },
@@ -960,6 +951,14 @@
             {
                 "mssv": "2502077",
                 "name": "Nguyễn Thị Mỹ Duyên"
+            },
+            {
+                "mssv": "2602033",
+                "name": "Nguyễn Thị Ngọc Hồng"
+            },
+            {
+                "mssv": "2602060",
+                "name": "Nguyễn Thị Kim Hương"
             }
         ]
     },

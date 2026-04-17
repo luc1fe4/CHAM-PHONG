@@ -33,6 +33,11 @@ class DetailedMonthlyAnalysis {
         ];
         return `${monthNames[parseInt(month) - 1]} - ${year}`;
     }
+    // Thêm hàm này vào sau hàm getWeekKey (sau dòng ~23)
+    // Đếm số tuần có dữ liệu cho phòng trong tháng
+    countWeeksInMonth(room, monthData) {
+        return monthData.weeks ? monthData.weeks.size : 1;
+    }
 
     // Load dữ liệu từ Firestore và tính toán chi tiết
     async loadDetailedMonthlyData(students) {
@@ -94,7 +99,8 @@ class DetailedMonthlyAnalysis {
                     room: room,
                     diemTrucPhong: [],
                     diemPhatCaNhan: [],
-                    studentViolations: {} // Theo dõi vi phạm cá nhân từng sinh viên
+                    studentViolations: {}, // Theo dõi vi phạm cá nhân từng sinh viên
+                    weeks: new Set()
                 };
             }
 
@@ -107,10 +113,23 @@ class DetailedMonthlyAnalysis {
             }
 
             // Tính điểm trực phòng
-            const diemTrucNgay = this.calculateDailyRoomScore(data);
-            this.monthlyData[monthKey][room].diemTrucPhong.push(diemTrucNgay);
-            this.weeklyData[weekKey][room].diemTrucPhong.push(diemTrucNgay);
+            let diemTrucNgay = data.score_55;
 
+            // Nếu không có điểm lưu sẵn, mới tính toán
+            if (!diemTrucNgay) {
+                diemTrucNgay = this.calculateDailyRoomScore(data);
+            }
+            this.monthlyData[monthKey][room].diemTrucPhong.push({
+                score: diemTrucNgay,
+                nguoiTruc: data.nguoiTruc,
+                date: dateObj.toLocaleDateString('vi-VN')
+            });
+            this.weeklyData[weekKey][room].diemTrucPhong.push({
+                score: diemTrucNgay,
+                nguoiTruc: data.nguoiTruc,
+                date: dateObj.toLocaleDateString('vi-VN')
+            });
+            this.monthlyData[monthKey][room].weeks.add(weekKey);
             // Tính điểm phạt cá nhân cho từng sinh viên
             roomStudents.forEach(student => {
                 // Không tính điểm phạt cho người trực trong ngày đó
@@ -191,31 +210,26 @@ class DetailedMonthlyAnalysis {
         weeks.forEach(weekKey => {
             const weekData = this.weeklyData[weekKey];
             Object.entries(weekData).forEach(([room, roomData]) => {
-                // Duyệt từng ngày chấm điểm trực trong tuần
                 if (roomData.diemTrucPhong && Array.isArray(roomData.diemTrucPhong)) {
-                    roomData.diemTrucPhong.forEach((scoreObj, idx) => {
-                        // Nếu lưu dạng số, scoreObj là số, nếu lưu dạng object thì có thêm thông tin người trực/ngày
-                        let score = scoreObj;
-                        let nguoiTruc = null;
-                        let date = null;
-                        if (typeof scoreObj === 'object') {
-                            score = scoreObj.score;
-                            nguoiTruc = scoreObj.nguoiTruc;
-                            date = scoreObj.date;
-                        }
-                        // Nếu có thông tin người trực thì lấy MSSV và tên từ students
+                    roomData.diemTrucPhong.forEach((item) => {
+                        const score = typeof item === 'object' ? item.score : item;
+                        const nguoiTruc = typeof item === 'object' ? item.nguoiTruc : null;
+                        const date = typeof item === 'object' ? item.date : '';
+                        
                         if (score < 47) {
                             let student = null;
                             if (nguoiTruc) {
-                                student = (window.students || []).find(s => s.name === nguoiTruc || s.mssv === nguoiTruc);
+                                student = (window.students || []).find(s => 
+                                    s.name === nguoiTruc || s.mssv === nguoiTruc
+                                );
                             }
                             results.push({
                                 week: weekKey,
                                 room: room,
-                                studentName: student ? student.name : (nguoiTruc || ''),
+                                studentName: student ? student.name : (nguoiTruc || 'Không rõ'),
                                 mssv: student ? student.mssv : '',
                                 dailyScore: score.toFixed(1),
-                                date: date || ''
+                                date: date
                             });
                         }
                     });
@@ -260,17 +274,47 @@ class DetailedMonthlyAnalysis {
         const results = [];
         
         Object.entries(monthData).forEach(([room, data]) => {
-            const tongDiemTrucPhong = data.diemTrucPhong.reduce((sum, score) => sum + score, 0);
-            const tongDiemPhatCaNhan = data.diemPhatCaNhan.reduce((sum, penalty) => sum + penalty, 0);
+            // Xử lý điểm trực phòng
+            const scores = data.diemTrucPhong.map(item => {
+                if (typeof item === 'object' && item.score !== undefined) {
+                    return item.score;
+                }
+                return item;
+            });
+            
+            const tongDiemTrucPhong = scores.reduce((sum, score) => sum + score, 0);
+            const soLanCham = scores.length;
+            const diemTrungBinhTruc = soLanCham > 0 ? tongDiemTrucPhong / soLanCham : 0;
+            
+            // Tính trung bình điểm phạt
+            // Bước 1: Tính tổng điểm phạt tất cả thành viên trong tháng
+            const tongDiemPhatAllMembers = Object.values(data.studentViolations || {})
+                .reduce((total, violations) => {
+                    return total + violations.reduce((sum, v) => sum + v, 0);
+                }, 0);
+            
+            // Bước 2: Đếm số tuần có dữ liệu
+            const weeksInMonth = this.countWeeksInMonth(room, data);
+            
+            // Bước 3: Tính số thành viên
             const soThanhVien = this.roomMembers[room] || 1;
-            const diemCuoiCung = (tongDiemTrucPhong - tongDiemPhatCaNhan) / soThanhVien;
+            
+            // Bước 4: Trung bình điểm phạt = Tổng điểm phạt / Số tuần / Số thành viên
+            const diemTrungBinhPhat = weeksInMonth > 0 ? tongDiemPhatAllMembers / weeksInMonth / soThanhVien : 0;
+            
+            // Điểm cuối cùng = Trung bình điểm trực + Trung bình điểm phạt
+            const diemCuoiCung = diemTrungBinhTruc - diemTrungBinhPhat;
             
             results.push({
                 room: room,
                 tongDiemTruc: tongDiemTrucPhong.toFixed(1),
-                tongDiemPhat: tongDiemPhatCaNhan,
+                soLanCham: soLanCham,
+                diemTrungBinhTruc: diemTrungBinhTruc.toFixed(1),
+                tongDiemPhat: tongDiemPhatAllMembers,
+                diemTrungBinhPhat: diemTrungBinhPhat.toFixed(1),
+                soTuan: weeksInMonth,
                 soThanhVien: soThanhVien,
-                diemCuoiCung: Math.max(0, diemCuoiCung).toFixed(1)
+                diemCuoiCung: diemCuoiCung.toFixed(1)
             });
         });
         
@@ -376,8 +420,7 @@ class DetailedMonthlyAnalysis {
                     `).join('')}
                 </tbody>
             </table>
-        ` : '<p style="color: #666;">✅ Không có sinh viên nào có điểm phạt > 7 trong tuần.</p>';
-
+        ` : '<p style="color: #666;">✅ Không có sinh viên nào có điểm phạt > 7 trong tuần.</p>';   
         // Tạo bảng top 3 phòng
         const top3Table = top3Rooms.length > 0 ? `
             <table class="excel-table" style="margin-bottom: 20px;">
@@ -385,10 +428,11 @@ class DetailedMonthlyAnalysis {
                     <tr style="background: #e8f5e8;">
                         <th>Hạng</th>
                         <th>Phòng</th>
+                        <th>Số Tuần</th>
                         <th>Số TV</th>
-                        <th>Tổng Điểm Trực</th>
-                        <th>Tổng Điểm Phạt</th>
-                        <th>Điểm Cuối Cùng</th>
+                        <th>ĐTB Trực</th>
+                        <th>ĐTB Phạt</th>
+                        <th>Điểm Cuối</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -396,9 +440,10 @@ class DetailedMonthlyAnalysis {
                         <tr>
                             <td style="text-align: center; font-weight: bold; color: #388e3c;">${index + 1}</td>
                             <td style="text-align: center; font-weight: bold;">${room.room}</td>
+                            <td style="text-align: center;">${room.soTuan}</td>
                             <td style="text-align: center;">${room.soThanhVien}</td>
-                            <td style="text-align: center;">${room.tongDiemTruc}</td>
-                            <td style="text-align: center;">${room.tongDiemPhat}</td>
+                            <td style="text-align: center;">${room.diemTrungBinhTruc}</td>
+                            <td style="text-align: center; color: #f57c00;">${room.diemTrungBinhPhat}</td>
                             <td style="text-align: center; color: #388e3c; font-weight: bold;">${room.diemCuoiCung}</td>
                         </tr>
                     `).join('')}
@@ -413,10 +458,11 @@ class DetailedMonthlyAnalysis {
                     <tr style="background: #ffebee;">
                         <th>Hạng</th>
                         <th>Phòng</th>
+                        <th>Số Tuần</th>
                         <th>Số TV</th>
-                        <th>Tổng Điểm Trực</th>
-                        <th>Tổng Điểm Phạt</th>
-                        <th>Điểm Cuối Cùng</th>
+                        <th>ĐTB Trực</th>
+                        <th>ĐTB Phạt</th>
+                        <th>Điểm Cuối</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -424,9 +470,10 @@ class DetailedMonthlyAnalysis {
                         <tr>
                             <td style="text-align: center; font-weight: bold; color: #d32f2f;">Cuối ${index + 1}</td>
                             <td style="text-align: center; font-weight: bold;">${room.room}</td>
+                            <td style="text-align: center;">${room.soTuan}</td>
                             <td style="text-align: center;">${room.soThanhVien}</td>
-                            <td style="text-align: center;">${room.tongDiemTruc}</td>
-                            <td style="text-align: center;">${room.tongDiemPhat}</td>
+                            <td style="text-align: center;">${room.diemTrungBinhTruc}</td>
+                            <td style="text-align: center; color: #f57c00;">${room.diemTrungBinhPhat}</td>
                             <td style="text-align: center; color: #d32f2f; font-weight: bold;">${room.diemCuoiCung}</td>
                         </tr>
                     `).join('')}
@@ -458,8 +505,10 @@ class DetailedMonthlyAnalysis {
             </div>
 
             <div style="margin-top: 20px; padding: 12px; background: #f5f5f5; border-radius: 6px; font-size: 13px; color: #666;">
-                <strong>Ghi chú:</strong> Điểm trực phòng tính trên thang 55. Điểm phạt tính theo số vi phạm cá nhân. 
-                Công thức điểm cuối cùng: (Tổng điểm trực - Tổng điểm phạt) ÷ Số thành viên.
+                <strong>Ghi chú:</strong> Điểm trực phòng tính trên thang 55. 
+                Công thức: Điểm cuối = ĐTB Trực + ĐTB Phạt<br>
+                - ĐTB Trực = Tổng điểm trực ÷ Số lần chấm<br>
+                - ĐTB Phạt = Tổng điểm phạt tất cả thành viên ÷ Số tuần ÷ Số thành viên
             </div>
         `;
     }
@@ -538,15 +587,15 @@ class DetailedMonthlyAnalysis {
             });
 
             csvContent += `\nTop phòng có điểm cao nhất (${top3Rooms.length})\n`;
-            csvContent += `Hạng,Phòng,Số TV,Tổng Điểm Trực,Tổng Điểm Phạt,Điểm Cuối Cùng\n`;
+            csvContent += `Hạng,Phòng,Tổng Điểm Trực,Số Lần Chấm,Điểm Trung Bình\n`;
             top3Rooms.forEach((room, index) => {
-                csvContent += `${index + 1},${room.room},${room.soThanhVien},${room.tongDiemTruc},${room.tongDiemPhat},${room.diemCuoiCung}\n`;
+                csvContent += `${index + 1},${room.room},${room.tongDiemTruc},${room.soLanCham},${room.diemCuoiCung}\n`;
             });
 
             csvContent += `\nPhòng có điểm thấp nhất (${bottom2Rooms.length})\n`;
-            csvContent += `Hạng,Phòng,Số TV,Tổng Điểm Trực,Tổng Điểm Phạt,Điểm Cuối Cùng\n`;
+            csvContent += `Hạng,Phòng,Tổng Điểm Trực,Số Lần Chấm,Điểm Trung Bình\n`;
             bottom2Rooms.forEach((room, index) => {
-                csvContent += `Cuối ${index + 1},${room.room},${room.soThanhVien},${room.tongDiemTruc},${room.tongDiemPhat},${room.diemCuoiCung}\n`;
+                csvContent += `Cuối ${index + 1},${room.room},${room.tongDiemTruc},${room.soLanCham},${room.diemCuoiCung}\n`;
             });
 
             const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
