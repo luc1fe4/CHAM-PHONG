@@ -591,7 +591,7 @@ function showErrorPopup(roomNumber, errorMessage) {
   overlay.innerHTML = `
     <div class="result-popup">
       <div class="result-header" style="background: linear-gradient(135deg, #dc3545, #c82333);">
-        <h2>❌ Có lỗi xảy ra!</h2>
+        <h2>Có lỗi xảy ra!</h2>
         <p>Không thể lưu dữ liệu chấm phòng</p>
       </div>
       
@@ -671,10 +671,25 @@ function showErrorPopup(roomNumber, errorMessage) {
 // Function xử lý submit form với loading
 async function handleFormSubmit(e, form, roomData) {
   e.preventDefault();
-  
+
+  // Nếu form đã được lưu thành công rồi thì chặn gửi tiếp
+  if (form.dataset.submitted === 'true') {
+    alert('Dữ liệu đã được lưu. Vui lòng không gửi lại cùng một phiếu.');
+    return;
+  }
+
+  // Nếu đang trong quá trình gửi thì chặn lần nhấp tiếp theo
+  if (form.dataset.submitting === 'true') {
+    return;
+  }
+
+  form.dataset.submitting = 'true';
   console.log('Form submitted');
   
-  if (!validateRequiredFields(form)) return;
+  if (!validateRequiredFields(form)) {
+    form.dataset.submitting = 'false';
+    return;
+  }
 
   // Khởi tạo loading với các bước
   const loadingControl = showSubmitLoading();
@@ -711,6 +726,16 @@ async function handleFormSubmit(e, form, roomData) {
 
     await saveToFirestore(payload);
     
+    // Đánh dấu form đã gửi thành công, chặn gửi lại
+    form.dataset.submitted = 'true';
+    form.dataset.submitting = 'false';
+    const submitButton = form.querySelector('button[type="submit"], input[type="submit"]');
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'Đã lưu';
+      submitButton.style.cursor = 'not-allowed';
+    }
+
     // Hoàn thành - delay một chút để user thấy hoàn thành
     loadingControl.updateProgress(4, 'Hoàn thành!', 'Dữ liệu đã được lưu thành công');
     await delay(600);
@@ -731,6 +756,7 @@ async function handleFormSubmit(e, form, roomData) {
     
   } catch (error) {
     console.error('Lỗi khi submit form:', error);
+    form.dataset.submitting = 'false';
     loadingControl.hide();
     
     // Delay nhỏ trước khi hiển thị lỗi
@@ -1146,6 +1172,7 @@ function loadRoomForm(roomData) {
  */
 function collectCriteriaScores(form) {
   const criteria_scores = {};
+  const personalAreas = ['giuong', 'tu', 'keSach', 'ghe', 'mocTreoDo'];
   
   // Thu thập tất cả radio được chọn (trừ nguoiTruc)
   const radios = form.querySelectorAll('input[type="radio"]:checked');
@@ -1155,12 +1182,23 @@ function collectCriteriaScores(form) {
     
     // Bỏ qua nguoiTruc vì không phải là tiêu chí chấm điểm
     if (name === 'nguoiTruc') return;
+
+    let scoreKey = name;
+    const underscoreIndex = name.indexOf('_');
+    if (underscoreIndex > 0) {
+      const areaType = name.slice(0, underscoreIndex);
+      if (personalAreas.includes(areaType)) {
+        scoreKey = areaType;
+      }
+    }
     
     // Chuyển đổi giá trị thành số
     if (value === 'Đạt') {
-      criteria_scores[name] = 1;
+      if (criteria_scores[scoreKey] !== 0) {
+        criteria_scores[scoreKey] = 1;
+      }
     } else if (value === 'Không đạt') {
-      criteria_scores[name] = 0;
+      criteria_scores[scoreKey] = 0;
     }
   });
 
@@ -1254,21 +1292,34 @@ function createFirestorePayload(form, roomData, result) {
 }
 
 
-/** Lưu Firestore (collection: "cham_phong_9_9") */
+/** Lưu Firestore (collection: "cham_phong_test") với ID custom date_room */
 async function saveToFirestore(payload) {
   if (!window._db) {
     throw new Error("Firebase chưa khởi tạo (_db not found).");
   }
 
-  try {
-    console.log('Saving to Firestore:', payload); // Debug
+  if (!payload.createdAt || !payload.room) {
+    throw new Error("Payload thiếu createdAt hoặc room.");
+  }
 
-    const docRef = await window._db.collection("cham_phong_9").add({
+  const createdDate = new Date(payload.createdAt);
+  if (Number.isNaN(createdDate.getTime())) {
+    throw new Error("createdAt không phải định dạng ngày hợp lệ.");
+  }
+
+  const dateKey = createdDate.toISOString().slice(0, 10); // YYYY-MM-DD
+  const roomKey = payload.room.replace(/[\/\s]+/g, '_');
+  const docId = `${dateKey}_${roomKey}`;
+
+  try {
+    console.log('Saving to Firestore with custom ID:', docId, payload); // Debug
+
+    await window._db.collection("cham_phong_test").doc(docId).set({
       ...payload,
       serverTimestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
-    
-    console.log("Đã lưu document với ID:", docRef.id);
+
+    console.log("Đã lưu document với ID:", docId);
   } catch (err) {
     console.error("Lỗi Firestore:", err);
     throw err;
