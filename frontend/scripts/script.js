@@ -1292,7 +1292,7 @@ function createFirestorePayload(form, roomData, result) {
 }
 
 
-/** Lưu Firestore (collection: "cham_phong_test") với ID custom date_room */
+/** Lưu Firestore (collection: "cham_phong_9") với ID custom date_room */
 async function saveToFirestore(payload) {
   if (!window._db) {
     throw new Error("Firebase chưa khởi tạo (_db not found).");
@@ -1314,7 +1314,7 @@ async function saveToFirestore(payload) {
   try {
     console.log('Saving to Firestore with custom ID:', docId, payload); // Debug
 
-    await window._db.collection("cham_phong_test").doc(docId).set({
+    await window._db.collection("cham_phong_9").doc(docId).set({
       ...payload,
       serverTimestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
