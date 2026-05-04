@@ -706,7 +706,9 @@ async function handleFormSubmit(e, form, roomData) {
     const criteria_scores = collectCriteriaScores(form);
     console.log('Criteria scores:', criteria_scores);
 
-    const result = calculateScore(criteria_scores);
+    const nguoiTrucValue = form.querySelector('input[name="nguoiTruc"]:checked')?.value || "";
+    const dutyPerson = nguoiTrucValue === 'khong_co_nguoi_truc' ? '' : nguoiTrucValue;
+    const result = calculateScore(criteria_scores, dutyPerson);
     console.log('Score result:', result);
 
     // Bước 3: Chuẩn bị dữ liệu
@@ -1179,7 +1181,7 @@ function collectCriteriaScores(form) {
   radios.forEach(radio => {
     const name = radio.name;
     const value = radio.value;
-    
+
     // Bỏ qua nguoiTruc vì không phải là tiêu chí chấm điểm
     if (name === 'nguoiTruc') return;
 
@@ -1188,17 +1190,16 @@ function collectCriteriaScores(form) {
     if (underscoreIndex > 0) {
       const areaType = name.slice(0, underscoreIndex);
       if (personalAreas.includes(areaType)) {
-        scoreKey = areaType;
+        scoreKey = name; // Giữ nguyên tên đầy đủ để phân biệt từng thành viên
       }
     }
-    
-    // Chuyển đổi giá trị thành số
+
     if (value === 'Đạt') {
-      if (criteria_scores[scoreKey] !== 0) {
-        criteria_scores[scoreKey] = 1;
-      }
+      criteria_scores[scoreKey] = 1;
     } else if (value === 'Không đạt') {
       criteria_scores[scoreKey] = 0;
+    } else {
+      criteria_scores[scoreKey] = value;
     }
   });
 

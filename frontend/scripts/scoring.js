@@ -89,9 +89,9 @@
     'ghe': 2,
     'mocTreoDo': 2
   };
-  /** Tính điểm theo quy tắc đơn giản hóa */
-  function calculateScore(criteria_scores) {
-    const all_criteria = [
+  /** Tính điểm theo quy tắc chỉ trừ khu vực vệ sinh chung và khu vực cá nhân của người trực */
+  function calculateScore(criteria_scores, dutyName = '') {
+    const commonCriteria = [
         'hanhLang_giayDepSachSe', 'hanhLang_giayDepXepDung', 'hanhLang_keDep', 'hanhLang_sanHanhLang',
         'phongSinhHoat_sanPhongSach', 'phongSinhHoat_sanGonGang', 'phongSinhHoat_giuongTuBanGheMocTrong',
         'phongSinhHoat_cuaGoSach', 'phongSinhHoat_cuaKinhSach', 'phongSinhHoat_quatDaoSach', 'phongSinhHoat_dauTuQuanAoXepDung',
@@ -100,22 +100,29 @@
         'bonRuaTay_guongVoiNuoc', 'bonRuaTay_bonRuaTay', 'bonRuaTay_sanSachSe', 'bonRuaTay_thungRac', 'bonRuaTay_tuongLavabo', 'bonRuaTay_mocTreoChoi',
         'sanTuongGiatDo', 'thauCayGiatDo', 'loThoatNuocGiatDo', 'voiNuocGiatDo', 'saoDoGiatDo', 'cuaSoGiatDo', 'giaTreoGiatDo',
         'mocNguoiTruc',
-        'sanTuongNhaTamNho', 'cuaNhaTamNho', 'giaTrongNhaTamNho', 'voiSenNhaTamNho', 'loThoatNuocNhaTamNNo',
+        'sanTuongNhaTamNho', 'cuaNhaTamNho', 'giaTrongNhaTamNho', 'voiSenNhaTamNho', 'loThoatNuocNhaTamNho',
         'sanTuongTamLon', 'cuaTamLon', 'giaTrongTamLon', 'giaTreoChaTamLon', 'voiSenTamLon', 'voiXitTamLon', 'loThoatNuocTamLon', 'bonCauTamLon', 'quatHutTamLon',
-        'sanTuongWCNho', 'cuaWCNho', 'giaTreoChaWCNho', 'voiXitWCNho', 'loThoatNuocWCNho', 'bonCauWCNho', 'quatHutWCNho',
-        'giuong', 'tu', 'keSach', 'ghe', 'mocTreoDo'
+        'sanTuongWCNho', 'cuaWCNho', 'giaTreoChaWCNho', 'voiXitWCNho', 'loThoatNuocWCNho', 'bonCauWCNho', 'quatHutWCNho'
     ];
 
+    const personalAreas = ['giuong', 'tu', 'keSach', 'ghe', 'mocTreoDo'];
+    const dutyPersonalCriteria = dutyName ? personalAreas.map(area => `${area}_${dutyName}`) : [];
+    const all_criteria = [...commonCriteria, ...dutyPersonalCriteria];
+
     let score_55 = 55;
-    let failed = 0;
+    let failed_low = 0;
+    let failed_personal = 0;
 
     all_criteria.forEach(key => {
-        let value = criteria_scores[key];
+        const value = criteria_scores[key];
         if (value === 'Không đạt' || value === 0) {
             score_55 -= 1;
-            failed += 1;
+            if (dutyPersonalCriteria.includes(key)) {
+                failed_personal += 1;
+            } else {
+                failed_low += 1;
+            }
         }
-        // Đạt thì giữ nguyên, không đạt thì trừ 1 điểm
     });
 
     // Không cho điểm âm
@@ -123,11 +130,11 @@
 
     return {
         score_55,
-        raw_score: 55 - failed,
+        raw_score: 55 - failed_low - failed_personal,
         total_criteria: all_criteria.length,
         max_score: 55,
-        failed_low: failed,
+        failed_low,
         failed_medium: 0,
-        failed_personal: 0
+        failed_personal
     };
 }
