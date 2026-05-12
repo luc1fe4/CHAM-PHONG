@@ -749,9 +749,9 @@ async function handleFormSubmit(e, form, roomData) {
     await delay(200);
 
     // Lấy thông tin người trực để hiển thị
-    const nguoiTrucValue = form.querySelector('input[name="nguoiTruc"]:checked')?.value || "";
-    const isKhongCoNguoiTruc = nguoiTrucValue === 'khong_co_nguoi_truc';
-    const nguoiTrucName = isKhongCoNguoiTruc ? "" : nguoiTrucValue;
+    const selectedNguoiTrucValue = form.querySelector('input[name="nguoiTruc"]:checked')?.value || "";
+    const isKhongCoNguoiTruc = selectedNguoiTrucValue === 'khong_co_nguoi_truc';
+    const nguoiTrucName = isKhongCoNguoiTruc ? "" : selectedNguoiTrucValue;
 
     // Hiển thị popup kết quả
     showResultPopup(roomData.room, nguoiTrucName, result.score_55, isKhongCoNguoiTruc);

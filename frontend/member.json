@@ -536,20 +536,12 @@
         "floor": 1,
         "members": [
             {
-                "mssv": "2302048",
-                "name": "Đỗ Thanh Huyền"
-            },
-            {
                 "mssv": "2302050",
                 "name": "Huỳnh Gia Huyên"
             },
             {
                 "mssv": "2302051",
                 "name": "Hồ Thị Thu Yến"
-            },
-            {
-                "mssv": "2302052",
-                "name": "Nguyễn Thị Thu Hiền"
             },
             {
                 "mssv": "2302053",
@@ -1443,10 +1435,6 @@
             {
                 "mssv": "2501009",
                 "name": "Bùi Quang Dũng"
-            },
-            {
-                "mssv": "2501010",
-                "name": "Dương Phạm Hoàng Anh"
             },
             {
                 "mssv": "2501011",
