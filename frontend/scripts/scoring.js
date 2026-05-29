@@ -95,15 +95,15 @@
         'hanhLang_giayDepSachSe', 'hanhLang_giayDepXepDung', 'hanhLang_keDep', 'hanhLang_sanHanhLang',
         'phongSinhHoat_sanPhongSach', 'phongSinhHoat_sanGonGang', 'phongSinhHoat_giuongTuBanGheMocTrong',
         'phongSinhHoat_cuaGoSach', 'phongSinhHoat_cuaKinhSach', 'phongSinhHoat_quatDaoSach', 'phongSinhHoat_dauTuQuanAoXepDung',
-        'GiuongNguoiTruc', 'TuNguoiTruc', 'KeSachNguoiTruc', 'GheNguoiTruc',
         'banCong_chenDuaSachSe', 'banCong_chenDuaGonGang', 'banCong_sanSachSe', 'banCong_sanGonGang', 'banCong_loThoatNuocSach',
         'bonRuaTay_guongVoiNuoc', 'bonRuaTay_bonRuaTay', 'bonRuaTay_sanSachSe', 'bonRuaTay_thungRac', 'bonRuaTay_tuongLavabo', 'bonRuaTay_mocTreoChoi',
         'sanTuongGiatDo', 'thauCayGiatDo', 'loThoatNuocGiatDo', 'voiNuocGiatDo', 'saoDoGiatDo', 'cuaSoGiatDo', 'giaTreoGiatDo',
-        'mocNguoiTruc',
         'sanTuongNhaTamNho', 'cuaNhaTamNho', 'giaTrongNhaTamNho', 'voiSenNhaTamNho', 'loThoatNuocNhaTamNho',
         'sanTuongTamLon', 'cuaTamLon', 'giaTrongTamLon', 'giaTreoChaTamLon', 'voiSenTamLon', 'voiXitTamLon', 'loThoatNuocTamLon', 'bonCauTamLon', 'quatHutTamLon',
         'sanTuongWCNho', 'cuaWCNho', 'giaTreoChaWCNho', 'voiXitWCNho', 'loThoatNuocWCNho', 'bonCauWCNho', 'quatHutWCNho'
     ];
+    // Lưu ý: GiuongNguoiTruc, TuNguoiTruc, KeSachNguoiTruc, GheNguoiTruc, mocNguoiTruc đã bị xóa khỏi commonCriteria
+    // vì chúng sẽ được tính lại trong dutyPersonalCriteria (giuong_[Name], tu_[Name], keSach_[Name], ghe_[Name], mocTreoDo_[Name])
 
     const personalAreas = ['giuong', 'tu', 'keSach', 'ghe', 'mocTreoDo'];
     const dutyPersonalCriteria = dutyName ? personalAreas.map(area => `${area}_${dutyName}`) : [];
