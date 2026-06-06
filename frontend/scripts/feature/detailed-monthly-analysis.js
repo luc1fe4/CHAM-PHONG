@@ -228,7 +228,7 @@ class DetailedMonthlyAnalysis {
                                 room: room,
                                 studentName: student ? student.name : (nguoiTruc || 'Không rõ'),
                                 mssv: student ? student.mssv : '',
-                                dailyScore: score.toFixed(1),
+                                dailyScore: score.toFixed(4),
                                 date: date
                             });
                         }
@@ -307,14 +307,14 @@ class DetailedMonthlyAnalysis {
             
             results.push({
                 room: room,
-                tongDiemTruc: tongDiemTrucPhong.toFixed(1),
+                tongDiemTruc: tongDiemTrucPhong.toFixed(4),
                 soLanCham: soLanCham,
-                diemTrungBinhTruc: diemTrungBinhTruc.toFixed(1),
+                diemTrungBinhTruc: diemTrungBinhTruc.toFixed(4),
                 tongDiemPhat: tongDiemPhatAllMembers,
-                diemTrungBinhPhat: diemTrungBinhPhat.toFixed(1),
+                diemTrungBinhPhat: diemTrungBinhPhat.toFixed(4),
                 soTuan: weeksInMonth,
                 soThanhVien: soThanhVien,
-                diemCuoiCung: diemCuoiCung.toFixed(1)
+                diemCuoiCung: diemCuoiCung.toFixed(4)
             });
         });
         
@@ -577,7 +577,7 @@ class DetailedMonthlyAnalysis {
             csvContent += `Sinh viên có điểm trực < 47 trong tuần (${lowScoreStudents.length})\n`;
             csvContent += `STT,Tuần,Phòng,MSSV,Họ và Tên,Điểm TB Tuần\n`;
             lowScoreStudents.forEach((student, index) => {
-                csvContent += `${index + 1},${student.week.split('-W')[1] || ''},${student.room},${student.mssv},"${student.studentName}",${student.avgScore}\n`;
+                csvContent += `${index + 1},${student.week.split('-W')[1] || ''},${student.room},${student.mssv},"${student.studentName}",${student.dailyScore}\n`;
             });
 
             csvContent += `\nSinh viên có điểm phạt > 7 trong tuần (${highViolationStudents.length})\n`;
